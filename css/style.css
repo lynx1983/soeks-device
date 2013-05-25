@@ -1,0 +1,167 @@
+#device {
+	font-family: Arial;
+	width: 160px;
+	height: 200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -80px;
+	margin-top: -100px;
+}
+
+#device-screen {
+	width: 128px;
+	height: 160px;
+	background: #000;
+	margin: 0 auto;
+	position: relative;
+}
+
+#top-panel {
+	position: absolute;
+	top: 0;
+}
+
+#bottom-panel {
+	position: absolute;
+	bottom: 0;
+}
+
+#main-view {
+	height: 128px;
+	width: 128px;
+	position: absolute;
+	top: 16px;
+	left: 0;
+}
+
+.fullscreen #main-view {
+	top: 0;
+	left: 0;
+	height: 160px;
+}
+
+.fullscreen .panel {
+	display: none;
+}
+
+div.view {
+	color: #FFFFFF;
+	height: 100%;
+	width: 100%;
+}
+
+div.panel {
+	height: 16px;
+	background: url('../img/panel-bg.png') repeat-x;
+	width: 100%;
+	left: 0;
+}
+
+div.menu-item {
+	height: 128px;
+	text-align: center;
+}
+
+div.menu-item img {
+	margin-top: 18px;
+	margin-bottom: 14px;
+}
+
+div.menu-item span {
+	color: #FFFFFF;
+	display: block;
+}
+
+div.button {
+	width: 16px;
+	height: 13px;
+	position: absolute;
+	top: 1px;
+}
+
+div.button.left {
+	left: 6px;
+}
+
+div.button.right {
+	right: 6px;
+}
+
+div.button.middle {
+	left: 50%;
+	margin-left: -8px;
+}
+
+div.button.none {
+	display: none;
+}
+
+div.button.ok {
+	background-image: url('../img/button-ok.png');
+}
+
+div.button.up {
+	background-image: url('../img/button-up.png');
+}
+
+div.button.down {
+	background-image: url('../img/button-down.png');
+}
+
+div.battery {
+	position: absolute;
+	width: 16px;
+	height: 10px;
+	top: 3px;
+	left: 2px;
+}
+
+div.battery.full {
+	background-image: url('../img/battery-full.png');
+}
+
+div.clock {
+	background: #000000;
+	color: #FFFFFF;
+	width: 30px;
+	height: 12px;
+	text-align: center;
+	position: absolute;
+	right: 2px;
+	top: 2px;
+	font-size: 7px;
+	font-family: sans-serif;
+	line-height: 12px;
+}
+
+div.activity-indicator {
+	width: 44px;
+	height: 12px;
+	position: absolute;
+	top: 2px;
+	left: 50px; 
+}
+
+ul.activity-indicator {
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+}
+
+ul.activity-indicator li {
+	width: 3px;
+	height: 12px;
+	float: right;
+	margin-left: 1px;
+	position: relative;
+	overflow: hidden;
+}
+
+ul.activity-indicator li span {
+	background-color: #00ff00;
+	display: block;
+	bottom: 0;
+	width: 3px;
+	position: absolute;
+}

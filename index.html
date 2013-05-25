@@ -1,0 +1,63 @@
+<!--DOCTYPE html-->
+<html>	
+	<head>
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+ 		<title></title>
+ 		<link rel="stylesheet" type="text/css" href="css/reset.css">
+ 		<link rel="stylesheet" type="text/css" href="css/style.css">
+ 		<script type="text/javascript" src="js/lib/require.js"></script>
+ 		<script type="text/javascript" src="js/config.js"></script>
+ 		<script type="text/javascript" src="js/app.js"></script>
+	</head>
+	<body>
+ 		<div id="device">
+ 			<div id="device-screen">
+ 				<div id="top-panel" class="panel">
+ 					<div class="activity-indicator-placeholder"></div>
+ 				</div>
+ 				<div id="main-view">
+ 				</div>
+ 				<div id="bottom-panel" class="panel">
+ 				</div>
+ 			</div>
+ 			<button class="left">Left</button>
+ 			<button class="middle">Middle</button>
+ 			<button class="right">Right</button>
+ 		</div>
+ 		<script type="text/template" id="about-screen-template">
+    	<div class="view">
+	      About
+  	  </div>
+ 		</script>
+ 		<script type="text/template" id="menuitem-template">
+    	<div class="view">
+	      <label><%- title %></label>
+  	  </div>
+ 		</script>
+ 		<script type="text/template" id="mainmenu-template">
+ 			<div class="menu-item">
+				<% if(item.icon) { %>
+					<img src="<%=item.icon%>"/>
+				<% } %>
+				<span><%=item.title%></span>
+ 			</div>
+ 		</script>
+ 		<script type="text/template" id="bottom-panel-template">
+ 			<div class="button left <%=buttons.left%>"></div>
+ 			<div class="button middle <%=buttons.middle%>"></div>
+ 			<div class="button right <%=buttons.right%>"></div>
+ 		</script>
+ 		<script type="text/template" id="top-panel-template">
+ 			<div class="battery full"></div>
+ 			<div class="activity-indicator"></div>
+ 			<div class="clock"></div>
+ 		</script>
+ 		<script type="text/template" id="activitygraph-template">
+ 			<ul class="activity-indicator clearfix">
+ 				<% _.each(marks, function(mark) { %>
+ 					<li><span style="height: <%=mark%>px"></span></li>
+ 				<% }); %>
+ 			</ul>
+ 		</script>
+	</body>
+</html> 
