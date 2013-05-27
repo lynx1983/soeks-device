@@ -34,5 +34,5 @@ define(["view/Panel-view"], function(PanelView) {
 		}
 	});
 
-	return BottomPanelView;
+	return new BottomPanelView;
 });

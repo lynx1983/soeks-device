@@ -1,4 +1,8 @@
-define(["view/EventDriven-view"], function(EventDrivenView) {	
+define([
+	"view/EventDriven-view",
+	"view/TopPanel-view",
+	"view/BottomPanel-view",
+	], function(EventDrivenView, TopPanel, BottomPanel) {	
 		var DeviceView;
 		DeviceView = EventDrivenView.extend({
 			el: $('#device'),
@@ -9,8 +13,6 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 			},
 			initialize: function() {
 				this.screens = {};
-				this.bottomPanel = this.options.bottomPanel;
-				this.topPanel = this.options.topPanel;
 				this.screenStack = [];
 				
 				_.bindAll(this, "onScreenChange");
@@ -20,9 +22,9 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 			},
 			render: function() {
 				this.setFullScreen(this.getCurrentScreen().fullScreen);
-				this.topPanel.render();
+				TopPanel.render();
 				this.getCurrentScreen().render();
-				this.bottomPanel.render();
+				BottomPanel.render();
 				return this;
 			},
 			addScreen: function(key, view) {

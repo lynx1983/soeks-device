@@ -17,5 +17,5 @@ define(["backbone", "view/Panel-view", "view/Clock-view", "view/ActivityGraph-vi
 		},
 	});
 
-	return TopPanelView;
+	return new TopPanelView;
 });

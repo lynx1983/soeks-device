@@ -1,8 +1,6 @@
 require([
 		"underscore",
 		"view/Device-view", 
-		"view/TopPanel-view", 
-		"view/BottomPanel-view", 
 		"view/MenuScreen-view",
 		"view/SettingsScreen-view",
 		"view/AboutScreen-view", 
@@ -10,11 +8,8 @@ require([
 		"collection/MenuItem-collection",
 		"model/MenuItem-model",
 	],
-	function(_, DeviceView, TopPanelView, BottomPanelView, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, MeasurementsCollection, MeasurementModel) {
-		var Device = new DeviceView({
-			topPanel: new TopPanelView,
-			bottomPanel: new BottomPanelView,
-		});
+	function(_, DeviceView, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, MeasurementsCollection, MeasurementModel) {
+		var Device = new DeviceView();
 
 		var MainMenuItemCollection = new MenuItemCollection([
 			new MenuItem({title: "Измерение", icon: "img/menu-1.png"}),
