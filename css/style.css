@@ -51,6 +51,54 @@ div.view {
 	width: 100%;
 }
 
+ul.menu {
+	font-size: 14px;
+	color: #FFFFFF;
+}
+
+ul.menu li {
+	height: 16px;
+	line-height: 16px;
+	display: list-item;
+}
+
+ul.menu li img.icon {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+}
+
+ul.menu li.active {
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+ul.menu li span.title {
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 14px;
+}
+
+ul.menu li span.radio {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background-image: url('../img/settings-radio-disabled-icon.png');
+	float: right;
+}
+
+ul.menu li span.radio.enabled {
+	background-image: url('../img/settings-radio-enabled-icon.png');
+}
+
+ul.menu li.active span.radio {
+	background-image: url('../img/settings-radio-disabled-active-icon.png');
+}
+
+ul.menu li.active span.radio.enabled {
+	background-image: url('../img/settings-radio-enabled-active-icon.png');
+}
+
 div.panel {
 	height: 16px;
 	background: url('../img/panel-bg.png') repeat-x;
@@ -75,9 +123,10 @@ div.menu-item span {
 
 div.button {
 	width: 16px;
-	height: 13px;
+	height: 16px;
 	position: absolute;
-	top: 1px;
+	top: 0;
+	background-repeat: no-repeat;
 }
 
 div.button.left {
@@ -99,14 +148,24 @@ div.button.none {
 
 div.button.ok {
 	background-image: url('../img/button-ok.png');
+	background-position: 0px 1px;
+}
+
+div.button.select {
+	background-image: url('../img/button-select.png');
+	background-position: 0px 1px;
+	width: 44px;
+	margin-left: -22px;
 }
 
 div.button.up {
 	background-image: url('../img/button-up.png');
+	background-position: 0px 1px;
 }
 
 div.button.down {
 	background-image: url('../img/button-down.png');
+	background-position: 0px 1px;
 }
 
 div.battery {

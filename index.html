@@ -34,6 +34,21 @@
 	      <label><%- title %></label>
   	  </div>
  		</script>
+ 		<script type="text/template" id="settingsmenu-template">
+ 			<ul class="menu">
+ 				<% _.each(items, function(item, index) { %>
+ 					<li class="clearfix <%= index == activeItemIndex ? 'active' : ''%>">
+ 						<% if(item.icon) { %>
+ 							<img class="icon" src="<%=item.icon%>"/>
+ 						<% } %>
+ 						<span class="title"><%=item.title%></span>
+ 						<% if(item.type == "radio") { %> 
+ 							<span class="radio <%= item.value ? 'enabled' : ''%>">&nbsp;</span>
+						<% } %>
+ 					</li>
+ 				<% }) %>
+ 			</ul>
+ 		</script>
  		<script type="text/template" id="mainmenu-template">
  			<div class="menu-item">
 				<% if(item.icon) { %>

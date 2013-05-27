@@ -1,7 +1,6 @@
-define(["backbone", "view/EventDriven-view"], function(Backbone, EventDrivenView) {	
+define(["view/EventDriven-view"], function(EventDrivenView) {	
 	var PanelView;
 	PanelView = EventDrivenView.extend({
 	});
-
 	return PanelView;
 });

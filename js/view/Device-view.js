@@ -31,6 +31,9 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 			setCurrentScreen: function(key) {
 				if(this.screens[key]) {
 					this.screenStack.unshift(this.screens[key]);
+					if(this.getCurrentScreen() && this.getCurrentScreen().reinitialize) {
+						this.getCurrentScreen().reinitialize();
+					}
 					this.render();
 				}
 			},
@@ -53,7 +56,11 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 				this.getCurrentScreen().trigger("button.right");
 			},
 			onScreenChange: function(params) {
-				this.setCurrentScreen(params.viewName)
+				if(params.viewName == "__prevScreen__") {
+					this.setPrevScreen();
+				} else {
+					this.setCurrentScreen(params.viewName);
+				}
 			},
 			setFullScreen: function(flag) {
 				if(flag) {

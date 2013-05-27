@@ -6,13 +6,15 @@ define(["backbone"], function(Backbone) {
 			return {
 				title: "Menu item",
 				icon: null,
-				view: null,  
+				view: null,
+				type: "normal",
+				value: null,
 			}
 		},
 		initialize: function() {
 			if(this.get("icon")) {
-				this.Image = new Image;
-				this.Image.src = this.get("icon")
+				var img = new Image;
+				img.src = this.get("icon")
 			}
 		}
 	});

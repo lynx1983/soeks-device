@@ -1,18 +1,20 @@
 define(["view/Screen-view"], function(ScreenView) {	
-	var MenuScreen; 
-	MenuScreen = ScreenView.extend({
-		template: _.template($('#mainmenu-template').html()),
+	var SettingsView; 
+	SettingsView = ScreenView.extend({
+		template: _.template($('#settingsmenu-template').html()),
 		initialize: function() {
 			this.activeItemIndex = 0;
-			this.fullScreen = true;
 			this.on("button.left", this.onLeftButton);
 			this.on("button.middle", this.onMiddleButton);
 			this.on("button.right", this.onRightButton);
 		},
+		reinitialize: function() {
+			this.activeItemIndex = 0;
+		},
 		render: function() {
-			this.$el.html(this.template({item: this.collection.at(this.activeItemIndex).toJSON()}));
+			this.$el.html(this.template({items: this.collection.toJSON(), activeItemIndex: this.activeItemIndex}));
 			this.eventBus.trigger("device.panel.leftButton", "up");
-			this.eventBus.trigger("device.panel.middleButton", "ok");
+			this.eventBus.trigger("device.panel.middleButton", "select");
 			this.eventBus.trigger("device.panel.rightButton", "down");
 			return this;
 		},
@@ -34,5 +36,5 @@ define(["view/Screen-view"], function(ScreenView) {
 			this.render();
 		}
 	});
-	return MenuScreen;
+	return SettingsView;
 });
