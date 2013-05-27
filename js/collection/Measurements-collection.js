@@ -45,7 +45,6 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				}
 			});
 			var value = _.random(level.minimum, level.maximum);
-			console.log(range + ' - ' + level.tag + ' - ' + value);
 			this.add({
 				value: value,
 				tag: level.tag,
