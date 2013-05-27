@@ -3,9 +3,9 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 		DeviceView = EventDrivenView.extend({
 			el: $('#device'),
 			events: {
-				"click button.left": "leftButtonClick",
-				"click button.middle": "middleButtonClick",
-				"click button.right": "rightButtonClick",
+				"click div.hardware.left": "leftButtonClick",
+				"click div.hardware.middle": "middleButtonClick",
+				"click div.hardware.right": "rightButtonClick",
 			},
 			initialize: function() {
 				this.screens = {};
