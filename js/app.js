@@ -7,8 +7,9 @@ require([
 		"view/SplashScreen-view", 
 		"collection/MenuItem-collection",
 		"model/MenuItem-model",
+		"model/DeviceSettings-model",
 	],
-	function(_, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, MeasurementsCollection, MeasurementModel) {
+	function(_, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, DeviceSettings) {
 		var MainMenu = new MenuItemCollection([
 			new MenuItem({title: "Измерение", icon: "img/menu-1.png"}),
 			new MenuItem({title: "Накоп. доза", icon: "img/menu-2.png"}),
@@ -31,7 +32,7 @@ require([
 			new MenuItem({title: "Звук", icon: "img/settings-sound-icon.png"}),
 			new MenuItem({title: "Экран", icon: "img/settings-screen-icon.png"}),
 			new MenuItem({title: "Питание", icon: "img/settings-battery-icon.png"}),
-			new MenuItem({title: "Блютуз", icon: "img/settings-bt-icon.png", type: "radio", value: true}),
+			new MenuItem({title: "Блютуз", icon: "img/settings-bt-icon.png", type: "radio", value: DeviceSettings.get("bluetooth")}),
 			new MenuItem({title: "Выход", icon: "img/settings-back-icon.png", view: "__prevScreen__"}),
 		]);
 
