@@ -75,7 +75,7 @@
  		<script type="text/template" id="activitygraph-template">
  			<ul class="activity-indicator clearfix">
  				<% _.each(marks, function(mark) { %>
- 					<li><span style="height: <%=mark%>px"></span></li>
+ 					<li><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
  				<% }); %>
  			</ul>
  		</script>

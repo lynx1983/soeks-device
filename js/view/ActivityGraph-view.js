@@ -1,30 +1,28 @@
-define(["backbone"], function(Bakcbone) {	
+define(["backbone", "collection/Measurements-collection"], function(Bakcbone, MeasurementsCollection) {	
 	var ActivityGraphView; 
 	ActivityGraphView = Backbone.View.extend({
 		defaults: {
-			min: 1,
+			min: 0,
 			max: 12,
 			length: 11,
 		},
 		template: _.template($('#activitygraph-template').html()),
 		initialize: function() {
-			this.udpateTimeout = setInterval(_.bind(function() {this.trigger("view.update");}, this), 1000);
+			MeasurementsCollection.on("add", _.bind(function() {this.render()}, this));
 			this.options = _.extend(this.defaults, this.options);
-			this.marks = [];
-			this.render();
-			this.on("view.update", this.updateView);
 		},
 		render: function() {
-			this.$el.html(this.template({marks: this.marks}))
+			var marks = [];
+			var scale = this.options.max;
+			_.each(MeasurementsCollection.last(this.options.length).reverse(), function(item) {
+				marks.push({
+					value: Math.round(scale * (item.get('value') / 100)),
+					tag: item.get('tag'),
+				})
+			})
+			this.$el.html(this.template({marks: marks}))
 			return this;
 		},
-		updateView: function() {
-			this.marks.unshift(_.random(this.options.min, this.options.max));
-			while(this.marks.length > this.options.length) {
-				this.marks.pop();
-			}
-			this.render();
-		}
 	});
 	return ActivityGraphView;
 });

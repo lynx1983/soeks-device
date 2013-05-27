@@ -288,9 +288,20 @@ ul.activity-indicator li {
 }
 
 ul.activity-indicator li span {
-	background-color: #00ff00;
 	display: block;
 	bottom: 0;
 	width: 3px;
 	position: absolute;
+}
+
+ul.activity-indicator li span.normal {
+	background-color: #00ff00;
+}
+
+ul.activity-indicator li span.warning {
+	background-color: #fff200;
+}
+
+ul.activity-indicator li span.danger {
+	background-color: #ed1c24;
 }
