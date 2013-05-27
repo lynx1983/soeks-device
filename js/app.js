@@ -32,7 +32,16 @@ require([
 			new MenuItem({title: "Звук", icon: "img/settings-sound-icon.png"}),
 			new MenuItem({title: "Экран", icon: "img/settings-screen-icon.png"}),
 			new MenuItem({title: "Питание", icon: "img/settings-battery-icon.png"}),
-			new MenuItem({title: "Блютуз", icon: "img/settings-bt-icon.png", type: "radio", value: DeviceSettings.get("bluetooth")}),
+			new MenuItem({
+				title: "Блютуз", 
+				icon: "img/settings-bt-icon.png", 
+				type: "radio", 
+				value: DeviceSettings.get("bluetooth"), 
+				action: function() {
+					this.set("value", !this.get("value"));
+					DeviceSettings.set("bluetooth", this.get("value"))
+				}
+			}),
 			new MenuItem({title: "Выход", icon: "img/settings-back-icon.png", view: "__prevScreen__"}),
 		]);
 

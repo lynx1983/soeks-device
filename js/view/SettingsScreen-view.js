@@ -25,9 +25,12 @@ define(["view/Screen-view"], function(ScreenView) {
 		},
 		onMiddleButton: function() {
 			var item = this.collection.at(this.activeItemIndex);
-			var viewName = item.get("view");
-			if(viewName) {
-				this.eventBus.trigger("device.screen.change", {viewName: viewName});
+			if(item.get("view")) {
+				this.eventBus.trigger("device.screen.change", {viewName: item.get("view")});
+			}
+			if(item.get("action")) {
+				item.get("action").apply(item);
+				this.render()
 			}
 		},
 		onRightButton: function() {

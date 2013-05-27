@@ -2,8 +2,7 @@ define(["backbone"], function(Backbone) {
 	var ClockView; 
 	ClockView = Backbone.View.extend({
 		initialize: function(options) {
-			this.udpateTimeout = setInterval(_.bind(function() {this.trigger("view.update");}, this), 10 * 1000);
-			this.on("view.update", this.render);
+			this.udpateTimeout = setInterval(_.bind(this.render, this), 10 * 1000);
 			this.render();
 		},
 		render: function() {

@@ -6,6 +6,7 @@ define(["backbone"], function(Backbone) {
 			return {
 				title: "Menu item",
 				icon: null,
+				action: null,
 				view: null,
 				type: "normal",
 				value: null,

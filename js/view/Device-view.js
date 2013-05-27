@@ -15,10 +15,8 @@ define([
 				this.screens = {};
 				this.screenStack = [];
 				
-				_.bindAll(this, "onScreenChange");
-				_.bindAll(this, "setPrevScreen");
-				this.eventBus.bind("device.screen.change", this.onScreenChange)
-				this.eventBus.bind("device.screen.prev", this.setPrevScreen)
+				this.eventBus.bind("device.screen.change", _.bind(this.onScreenChange, this));
+				this.eventBus.bind("device.screen.prev", _.bind(this.setPrevScreen, this));
 			},
 			render: function() {
 				this.setFullScreen(this.getCurrentScreen().fullScreen);

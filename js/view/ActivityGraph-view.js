@@ -8,7 +8,7 @@ define(["backbone", "collection/Measurements-collection"], function(Bakcbone, Me
 		},
 		template: _.template($('#activitygraph-template').html()),
 		initialize: function() {
-			MeasurementsCollection.on("add", _.bind(function() {this.render()}, this));
+			MeasurementsCollection.on("add", _.bind(this.render, this));
 			this.options = _.extend(this.defaults, this.options);
 		},
 		render: function() {

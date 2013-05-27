@@ -1,4 +1,4 @@
-define(["backbone", "view/Panel-view", "view/Clock-view", "view/ActivityGraph-view"], function(Backbone, PanelView, ClockView, ActivityGraphView) {	
+define(["backbone", "view/Panel-view", "view/Clock-view", "view/ActivityGraph-view", "model/DeviceSettings-model"], function(Backbone, PanelView, ClockView, ActivityGraphView, DeviceSettings) {	
 	var TopPanelView;
 	TopPanelView = PanelView.extend({
 		el: '#top-panel',
@@ -11,6 +11,7 @@ define(["backbone", "view/Panel-view", "view/Clock-view", "view/ActivityGraph-vi
 			this.ActivityGraph = new ActivityGraphView({
 				el: this.$el.find('div.activity-indicator')
 			});
+			DeviceSettings.on("change:bluetooth", _.bind(this.render, this))
 		},
 		render: function() {
 			return this;
