@@ -8,10 +8,8 @@ require([
 		"collection/MenuItem-collection",
 		"model/MenuItem-model",
 	],
-	function(_, DeviceView, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, MeasurementsCollection, MeasurementModel) {
-		var Device = new DeviceView();
-
-		var MainMenuItemCollection = new MenuItemCollection([
+	function(_, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, MeasurementsCollection, MeasurementModel) {
+		var MainMenu = new MenuItemCollection([
 			new MenuItem({title: "Измерение", icon: "img/menu-1.png"}),
 			new MenuItem({title: "Накоп. доза", icon: "img/menu-2.png"}),
 			new MenuItem({title: "История", icon: "img/menu-3.png"}),
@@ -23,10 +21,10 @@ require([
 		]);
 
 		var MainMenuScreen = new MenuScreen({
-			collection: MainMenuItemCollection,
+			collection: MainMenu,
 		});
 
-		var SettingsMenuItemCollection = new MenuItemCollection([
+		var SettingsMenu = new MenuItemCollection([
 			new MenuItem({title: "Язык", icon: "img/settings-lang-icon.png"}),
 			new MenuItem({title: "Порог фона", icon: "img/settings-level-icon.png"}),
 			new MenuItem({title: "Порог дозы", icon: "img/settings-dose-level-icon.png"}),
@@ -38,7 +36,7 @@ require([
 		]);
 
 		var SettingsScreen = new SettingsScreen({
-			collection: SettingsMenuItemCollection,
+			collection: SettingsMenu,
 		});
 
 		Device.addScreen("main", MainMenuScreen);

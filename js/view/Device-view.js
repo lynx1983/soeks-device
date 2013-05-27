@@ -77,6 +77,6 @@ define([
 			}
 		});
 
-		return DeviceView;
+		return new DeviceView;
 	}
 );
