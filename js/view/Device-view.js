@@ -1,6 +1,6 @@
-define(["backbone"], function(Backbone) {	
+define(["view/EventDriven-view"], function(EventDrivenView) {	
 		var DeviceView;
-		DeviceView = Backbone.View.extend({
+		DeviceView = EventDrivenView.extend({
 			el: $('#device'),
 			events: {
 				"click button.left": "leftButtonClick",
@@ -15,8 +15,8 @@ define(["backbone"], function(Backbone) {
 				
 				_.bindAll(this, "onScreenChange");
 				_.bindAll(this, "setPrevScreen");
-				this.options.eventBus.bind("device.screen.change", this.onScreenChange)
-				this.options.eventBus.bind("device.screen.prev", this.setPrevScreen)
+				this.eventBus.bind("device.screen.change", this.onScreenChange)
+				this.eventBus.bind("device.screen.prev", this.setPrevScreen)
 			},
 			render: function() {
 				this.topPanel.render();

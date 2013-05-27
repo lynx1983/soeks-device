@@ -9,17 +9,10 @@ require([
 		"model/MenuItem-model"
 	],
 	function(_, DeviceView, TopPanelView, BottomPanelView, MenuScreen, AboutScreen, MenuItemCollection, MenuItem) {
-		var EventBus = _.extend({}, Backbone.Events);
-
 		var Device = new DeviceView({
-			topPanel: new TopPanelView({
-				eventBus: EventBus
-			}),
-			bottomPanel: new BottomPanelView({
-				eventBus: EventBus				
-			}),
-			eventBus: EventBus,
-		});		
+			topPanel: new TopPanelView,
+			bottomPanel: new BottomPanelView,
+		});
 
 		var AboutMenuItem = new MenuItem({title: "About"});
 		var SettingsMenuItem = new MenuItem({title: "Settings"});
@@ -37,11 +30,10 @@ require([
 
 		var MainMenuScreen = new MenuScreen({
 			collection: MenuItemCollection,
-			eventBus: EventBus,
 		});
 
 		Device.addScreen("main", MainMenuScreen);
-		Device.addScreen("about", new AboutScreen({eventBus: EventBus}));
+		Device.addScreen("about", new AboutScreen);
 
 		Device.setCurrentScreen("main");
 	}

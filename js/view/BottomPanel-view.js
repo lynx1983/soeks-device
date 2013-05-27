@@ -12,9 +12,9 @@ define(["view/Panel-view"], function(PanelView) {
 			_.bindAll(this, "setLeftButton");
 			_.bindAll(this, "setMiddleButton");
 			_.bindAll(this, "setRightButton");
-			this.options.eventBus.bind("device.panel.leftButton", this.setLeftButton);
-			this.options.eventBus.bind("device.panel.middleButton", this.setMiddleButton);
-			this.options.eventBus.bind("device.panel.rightButton", this.setRightButton);
+			this.eventBus.bind("device.panel.leftButton", this.setLeftButton);
+			this.eventBus.bind("device.panel.middleButton", this.setMiddleButton);
+			this.eventBus.bind("device.panel.rightButton", this.setRightButton);
 		},
 		render: function() {
 			this.$el.html(this.template({buttons: this.buttons}))

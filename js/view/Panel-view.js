@@ -1,12 +1,6 @@
-define(["backbone"], function(Backbone) {	
+define(["backbone", "view/EventDriven-view"], function(Backbone, EventDrivenView) {	
 	var PanelView;
-	PanelView = Backbone.View.extend({
-		constructor: function(options) {
-			this.fullScreen = null;
-			this.eventBus = options.eventBus;
-			Backbone.View.call(this, options);
-			return this;
-		},
+	PanelView = EventDrivenView.extend({
 	});
 
 	return PanelView;

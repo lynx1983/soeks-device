@@ -1,11 +1,10 @@
-define(["backbone"], function(Backbone) {	
+define(["view/EventDriven-view"], function(EventDrivenView) {	
 	var ScreenView;
-	ScreenView = Backbone.View.extend({
+	ScreenView = EventDrivenView.extend({
 		el: $('#main-view'),
 		constructor: function(options) {
+			EventDrivenView.call(this, options);
 			this.fullScreen = null;
-			this.eventBus = options.eventBus;
-			Backbone.View.call(this, options);
 			return this;
 		},
 	});
