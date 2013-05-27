@@ -221,6 +221,10 @@ div.button.ok {
 	background-position: 0px 1px;
 }
 
+div.button.spot {
+	background-image: url('../img/button-spot.png');
+}
+
 div.button.select {
 	background-image: url('../img/button-select.png');
 	background-position: 0px 1px;
