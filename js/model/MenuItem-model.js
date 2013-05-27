@@ -13,8 +13,8 @@ define(["backbone"], function(Backbone) {
 		},
 		initialize: function() {
 			if(this.get("icon")) {
-				var img = new Image;
-				img.src = this.get("icon")
+				this.img = new Image;
+				this.img.src = this.get("icon")
 			}
 		}
 	});
