@@ -19,6 +19,7 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 				this.eventBus.bind("device.screen.prev", this.setPrevScreen)
 			},
 			render: function() {
+				this.setFullScreen(this.getCurrentScreen().fullScreen);
 				this.topPanel.render();
 				this.getCurrentScreen().render();
 				this.bottomPanel.render();
@@ -68,7 +69,6 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 				} else {
 					this.$el.find("#device-screen").removeClass("fullscreen")
 				}
-				this.render();
 			},
 			isFullScreen: function() {
 				return this.$el.find("#device-screen").is(".fullscreen")

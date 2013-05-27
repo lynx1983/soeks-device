@@ -6,10 +6,11 @@ require([
 		"view/MenuScreen-view",
 		"view/SettingsScreen-view",
 		"view/AboutScreen-view", 
+		"view/SplashScreen-view", 
 		"collection/MenuItem-collection",
 		"model/MenuItem-model"
 	],
-	function(_, DeviceView, TopPanelView, BottomPanelView, MenuScreen, SettingsScreen, AboutScreen, MenuItemCollection, MenuItem) {
+	function(_, DeviceView, TopPanelView, BottomPanelView, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem) {
 		var Device = new DeviceView({
 			topPanel: new TopPanelView,
 			bottomPanel: new BottomPanelView,
@@ -49,7 +50,9 @@ require([
 		Device.addScreen("about", new AboutScreen);
 		Device.addScreen("settings", SettingsScreen);
 
-		Device.setCurrentScreen("main");
-		Device.setCurrentScreen("settings");
+		Device.addScreen("splash", new SplashScreen);
+
+		Device.setCurrentScreen("splash");
+		//Device.setCurrentScreen("settings");
 	}
 );

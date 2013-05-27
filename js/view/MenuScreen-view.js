@@ -4,7 +4,7 @@ define(["view/Screen-view"], function(ScreenView) {
 		template: _.template($('#mainmenu-template').html()),
 		initialize: function() {
 			this.activeItemIndex = 0;
-			this.fullScreen = true;
+			this.fullScreen = false;
 			this.on("button.left", this.onLeftButton);
 			this.on("button.middle", this.onMiddleButton);
 			this.on("button.right", this.onRightButton);

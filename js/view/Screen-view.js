@@ -3,8 +3,8 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 	ScreenView = EventDrivenView.extend({
 		el: $('#main-view'),
 		constructor: function(options) {
-			EventDrivenView.call(this, options);
 			this.fullScreen = null;
+			EventDrivenView.call(this, options);
 			return this;
 		},
 	});
