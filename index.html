@@ -56,11 +56,13 @@
  		</script>
  		<script type="text/template" id="mainmenu-template">
  			<div class="menu-item">
-				<% if(item.icon) { %>
-					<img src="<%=item.icon%>"/>
-				<% } %>
-				<span><%=item.title%></span>
  			</div>
+ 		</script>
+ 		<script type="text/template" id="mainmenu-item-template">
+			<% if(item.icon) { %>
+				<img src="<%=item.icon.src%>"/>
+			<% } %>
+			<span><%=item.title%></span>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
  			<div class="button left <%=buttons.left%>"></div>

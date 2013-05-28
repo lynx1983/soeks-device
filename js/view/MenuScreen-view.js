@@ -5,12 +5,15 @@ define(["view/Screen-view"], function(ScreenView) {
 		initialize: function() {
 			this.activeItemIndex = 0;
 			this.fullScreen = false;
+			this.items = this.options.items;
 			this.on("button.left", this.onLeftButton);
 			this.on("button.middle", this.onMiddleButton);
 			this.on("button.right", this.onRightButton);
 		},
 		render: function() {
-			this.$el.html(this.template({item: this.collection.at(this.activeItemIndex).toJSON()}));
+			var activeItem = this.items[this.activeItemIndex];
+			this.$el.html(this.template());
+			activeItem.setElement(this.$el.find('.menu-item')).render();
 			this.eventBus.trigger("device.panel.leftButton", "up");
 			this.eventBus.trigger("device.panel.middleButton", "ok");
 			this.eventBus.trigger("device.panel.rightButton", "down");
@@ -18,19 +21,16 @@ define(["view/Screen-view"], function(ScreenView) {
 		},
 		onLeftButton: function() {
 			this.activeItemIndex--;
-			if(this.activeItemIndex < 0) this.activeItemIndex = this.collection.length - 1;
+			if(this.activeItemIndex < 0) this.activeItemIndex = this.items.length - 1;
 			this.render();
 		},
 		onMiddleButton: function() {
-			var item = this.collection.at(this.activeItemIndex);
-			var viewName = item.get("view");
-			if(viewName) {
-				this.eventBus.trigger("device.screen.change", {viewName: viewName});
-			}
+			var item = this.items[this.activeItemIndex];
+			item.trigger("menu.item.action");
 		},
 		onRightButton: function() {
 			this.activeItemIndex++;
-			if(this.activeItemIndex > this.collection.length - 1) this.activeItemIndex = 0;
+			if(this.activeItemIndex > this.items.length - 1) this.activeItemIndex = 0;
 			this.render();
 		}
 	});

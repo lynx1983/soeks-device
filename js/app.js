@@ -5,27 +5,26 @@ require([
 		"view/SettingsScreen-view",
 		"view/AboutScreen-view", 
 		"view/SplashScreen-view", 
-		"collection/MenuItem-collection",
-		"model/MenuItem-model",
 		"model/DeviceSettings-model",
+		"view/MainMenuItem-view",
 	],
-	function(_, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MenuItemCollection, MenuItem, DeviceSettings) {
-		var MainMenu = new MenuItemCollection([
-			new MenuItem({title: "Измерение", icon: "img/menu-1.png"}),
-			new MenuItem({title: "Накоп. доза", icon: "img/menu-2.png"}),
-			new MenuItem({title: "История", icon: "img/menu-3.png"}),
-			new MenuItem({title: "Информация", icon: "img/menu-4.png"}),
-			new MenuItem({title: "Настройки", icon: "img/menu-5.png", view: "settings"}),
-			new MenuItem({title: "Время", icon: "img/menu-6.png"}),
-			new MenuItem({title: "Проводник", icon: "img/menu-7.png"}),
-			new MenuItem({title: "О программе", icon: "img/menu-8.png", view: "about"})
-		]);
+	function(_, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, DeviceSettings, MainMenuItem) {
+		var MainMenu = [
+			new MainMenuItem({title: "Измерение", icon: "img/menu-1.png"}),
+			new MainMenuItem({title: "Накоп. доза", icon: "img/menu-2.png"}),
+			new MainMenuItem({title: "История", icon: "img/menu-3.png"}),
+			new MainMenuItem({title: "Информация", icon: "img/menu-4.png"}),
+			new MainMenuItem({title: "Настройки", icon: "img/menu-5.png", view: "settings"}),
+			new MainMenuItem({title: "Время", icon: "img/menu-6.png"}),
+			new MainMenuItem({title: "Проводник", icon: "img/menu-7.png"}),
+			new MainMenuItem({title: "О программе", icon: "img/menu-8.png", view: "about"})
+		];
 
 		var MainMenuScreen = new MenuScreen({
-			collection: MainMenu,
+			items: MainMenu,
 		});
 
-		var SettingsMenu = new MenuItemCollection([
+		/*var SettingsMenu = new MenuItemCollection([
 			new MenuItem({title: "Язык", icon: "img/settings-lang-icon.png"}),
 			new MenuItem({title: "Порог фона", icon: "img/settings-level-icon.png"}),
 			new MenuItem({title: "Порог дозы", icon: "img/settings-dose-level-icon.png"}),
@@ -47,11 +46,11 @@ require([
 
 		var SettingsScreen = new SettingsScreen({
 			collection: SettingsMenu,
-		});
+		});*/
 
 		Device.addScreen("main", MainMenuScreen);
 		Device.addScreen("about", new AboutScreen);
-		Device.addScreen("settings", SettingsScreen);
+		//Device.addScreen("settings", SettingsScreen);
 		Device.addScreen("splash", new SplashScreen);
 
 		Device.setCurrentScreen("splash");
