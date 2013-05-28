@@ -35,7 +35,7 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				level.right = probability;
 			})
 
-			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 1000);
+			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 3 * 1000);
 		},
 		doMeasure: function() {
 			var range = _.random(0, 100);

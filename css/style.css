@@ -41,6 +41,7 @@
 	position: absolute;
 	top: 16px;
 	left: 0;
+	overflow: hidden;
 }
 
 .fullscreen #main-view {
@@ -60,6 +61,16 @@ div.view {
 }
 
 div.splash {
+}
+
+ul.main-menu {
+
+}
+
+ul.main-menu li {
+	display: block;
+	width: 128px;
+	height: 128px;
 }
 
 ul.menu {
@@ -117,17 +128,17 @@ div.panel {
 	left: 0;
 }
 
-div.menu-item {
+ul.main-menu {
 	height: 128px;
 	text-align: center;
 }
 
-div.menu-item img {
+ul.main-menu img {
 	margin-top: 18px;
 	margin-bottom: 14px;
 }
 
-div.menu-item span {
+ul.main-menu span {
 	color: #FFFFFF;
 	display: block;
 }
