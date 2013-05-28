@@ -4,16 +4,17 @@ require([
 		"view/Device-view", 
 		"view/MenuScreen-view",
 		"view/SettingsScreen-view",
-		"view/AboutScreen-view", 
+		"view/AboutScreen-view",
+		"view/MeasurementScreen-view",
 		"view/SplashScreen-view", 
 		"view/MainMenuItem-view",
 		"view/ViewMenuItem-view",
 		"view/RadioMenuItem-view",
 	],
-	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem) {
+	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem) {
 		var MainMenu = new MenuScreen({
 			items: [
-				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png"}),
+				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png", view: "measurement"}),
 				new MainMenuItem({title: "Накоп. доза", iconPath: "img/menu-2.png"}),
 				new MainMenuItem({title: "История", iconPath: "img/menu-3.png"}),
 				new MainMenuItem({title: "Информация", iconPath: "img/menu-4.png"}),
@@ -124,6 +125,7 @@ require([
 			]
 		})
 
+		Device.addScreen("measurement", new MeasurementScreen);
 		Device.addScreen("main", MainMenu);
 		Device.addScreen("about", new AboutScreen);
 		Device.addScreen("settings", SettingsMenu);

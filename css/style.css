@@ -60,6 +60,20 @@ div.view {
 	width: 100%;
 }
 
+div.view.measurement {
+	background: url('../img/measurement-bg.png') no-repeat;
+}
+
+div.measurement div.bg-threshold {
+	font-size: 10px;
+	width: 20px;
+	position: absolute;
+	left: 50%;
+	margin-left: -10px;
+	bottom: 22px;
+	text-align: center;
+}
+
 div.splash {
 }
 
@@ -241,6 +255,13 @@ div.button.ok {
 	background-position: 0px 1px;
 }
 
+div.button.menu {
+	background-image: url('../img/button-menu.png');
+	background-position: 0px 0px;
+	width: 38px;
+	margin-left: -19px;
+}
+
 div.button.spot {
 	background-image: url('../img/button-spot.png');
 }
@@ -328,6 +349,47 @@ ul.activity-indicator li span.warning {
 
 ul.activity-indicator li span.danger {
 	background-color: #ed1c24;
+}
+
+div.measurement ul.activity-indicator {
+	width: 64px;
+	height: 20px;
+	background: transparent;
+}
+
+div.measurement ul.activity-indicator.left {
+	position: absolute;
+	bottom: 2px;
+	left: 0;
+}
+
+div.measurement ul.activity-indicator.right {
+	position: absolute;
+	bottom: 2px;
+	right: 0;
+}
+
+div.measurement ul.activity-indicator li {
+	height: 20px;
+}
+
+div.measurement ul.activity-indicator.left li {
+	float: left;
+}
+
+div.measurement ul.activity-indicator.right li {
+
+}
+
+div.measurement div.last-value {
+	position: absolute;
+	top: 14px;
+	left: 35px;
+	font-size: 20px;
+}
+
+div.measurement div.last-value span.units {
+	font-size: 14px;
 }
 
 span.icon.lang {

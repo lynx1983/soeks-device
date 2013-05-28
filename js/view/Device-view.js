@@ -31,15 +31,23 @@ define([
 			},
 			setCurrentScreen: function(key) {
 				if(this.screens[key]) {
+					if(this.getCurrentScreen()) {
+						this.getCurrentScreen().setActive(false);	
+					}
 					this.screenStack.unshift(this.screens[key]);
 					if(this.getCurrentScreen() && this.getCurrentScreen().reinitialize) {
 						this.getCurrentScreen().reinitialize();
 					}
+					this.getCurrentScreen().setActive(true);
 					this.render();
 				}
 			},
 			setPrevScreen: function() {
+				if(this.getCurrentScreen()) {
+					this.getCurrentScreen().setActive(false);	
+				}
 				this.screenStack.shift();
+				this.getCurrentScreen().setActive(true);
 				this.render();
 			},
 			getCurrentScreen: function() {

@@ -34,6 +34,22 @@
 	      About
   	  </div>
  		</script>
+ 		<script type="text/template" id="measurement-screen-template">
+    	<div class="view measurement">
+    		<div class="last-value"><%=lastValue%><span class="icon"></span><span class="units">uSv/h<span></div>
+    		<div class="bg-threshold"><%=backgroundThreshold%></div> 
+    		<ul class="activity-indicator left clearfix">
+	 				<% _.each(leftMarks, function(mark) { %>
+	 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+	 				<% }); %>
+ 				</ul>
+ 				<ul class="activity-indicator right clearfix">
+	 				<% _.each(rightMarks, function(mark) { %>
+	 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+	 				<% }); %>
+	 			</ul>
+  	  </div>
+ 		</script>
  		<script type="text/template" id="view-menu-item-template">
 			<% if(item.options.icon) { %>
 				<span class="icon <%=item.options.icon%>"></span>
@@ -74,7 +90,7 @@
  		<script type="text/template" id="activitygraph-template">
  			<ul class="activity-indicator clearfix">
  				<% _.each(marks, function(mark) { %>
- 					<li><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+ 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px;"></span></li>
  				<% }); %>
  			</ul>
  		</script>

@@ -28,6 +28,8 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 					tag: 'danger',
 				}];
 
+			this.difference = 10;
+
 			var probability = 0;
 			_.each(this.levels, function(level, key) {
 				level.left = probability == 0 ? 0 : probability + 1;
@@ -35,9 +37,9 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				level.right = probability;
 			})
 
-			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 3 * 1000);
+			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 1000);
 		},
-		doMeasure: function() {
+		newMeasure: function() {
 			var range = _.random(0, 100);
 			var level = _.find(this.levels, function(level) {
 				if(range >= level.left && range <= level.right) {
@@ -45,11 +47,23 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				}
 			});
 			var value = _.random(level.minimum, level.maximum);
+
+			var difference = _.random(-this.difference, this.difference);
+
 			this.add({
-				value: value,
+				leftValue: value - difference / 2,
+				rightValue: value + difference / 2,
 				tag: level.tag,
 			});
 		},
+		doMeasure: function() {
+			var lastMeasure = this.last();
+			if(lastMeasure && lastMeasure.get("level") < 2) {
+				lastMeasure.set("level" , lastMeasure.get("level") + 1);
+			} else {
+				this.newMeasure();
+			}
+		}
 	});
 	return new MeasurementsCollection;
 });

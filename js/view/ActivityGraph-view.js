@@ -8,7 +8,7 @@ define(["backbone", "collection/Measurements-collection"], function(Bakcbone, Me
 		},
 		template: _.template($('#activitygraph-template').html()),
 		initialize: function() {
-			MeasurementsCollection.on("add", _.bind(this.render, this));
+			MeasurementsCollection.on("add change", _.bind(this.render, this));
 			this.options = _.extend(this.defaults, this.options);
 		},
 		render: function() {
@@ -16,8 +16,9 @@ define(["backbone", "collection/Measurements-collection"], function(Bakcbone, Me
 			var scale = this.options.max;
 			_.each(MeasurementsCollection.last(this.options.length).reverse(), function(item) {
 				marks.push({
-					value: Math.round(scale * (item.get('value') / 100)),
+					value: Math.round(scale * (item.getValue() / 100)),
 					tag: item.get('tag'),
+					level: item.get('level'),
 				})
 			})
 			this.$el.html(this.template({marks: marks}))
