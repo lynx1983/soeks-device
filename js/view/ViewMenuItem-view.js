@@ -1,12 +1,10 @@
 define(["view/MenuItem-view"], function(MenuItemView) {	
 	var ViewMenuItem;
 	ViewMenuItem = MenuItemView.extend({
+		tagName: "li",
+		template: _.template($('#view-menu-item-template').html()),
 		constructor: function(options) {
 			MenuItemView.call(this, options);
-			if(options.icon) {
-				this.icon = new Image;
-				this.icon.src = this.options.icon;
-			}
 			this.on("menu.item.action", this.action);
 		},
 		action: function() {

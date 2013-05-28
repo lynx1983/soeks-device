@@ -34,24 +34,21 @@
 	      About
   	  </div>
  		</script>
- 		<script type="text/template" id="menuitem-template">
-    	<div class="view">
-	      <label><%- title %></label>
-  	  </div>
+ 		<script type="text/template" id="view-menu-item-template">
+			<% if(item.icon) { %>
+				<img class="icon" src="<%=item.icon.src%>"/>
+			<% } %>
+			<span class="title"><%=item.title%></span>
  		</script>
+ 		<script type="text/template" id="radio-menu-item-template">
+ 				<% if(item.icon) { %>
+ 					<img class="icon" src="<%=item.icon.src%>"/>
+				<% } %>
+				<span class="title"><%=item.title%></span>
+				<span class="radio<%= item.value ? ' enabled' : ''%>">&nbsp;</span>
+ 		</script> 		
  		<script type="text/template" id="settingsmenu-template">
  			<ul class="menu">
- 				<% _.each(items, function(item, index) { %>
- 					<li class="clearfix <%= index == activeItemIndex ? 'active' : ''%>">
- 						<% if(item.icon) { %>
- 							<img class="icon" src="<%=item.icon%>"/>
- 						<% } %>
- 						<span class="title"><%=item.title%></span>
- 						<% if(item.type == "radio") { %> 
- 							<span class="radio <%= item.value ? 'enabled' : ''%>">&nbsp;</span>
-						<% } %>
- 					</li>
- 				<% }) %>
  			</ul>
  		</script>
  		<script type="text/template" id="mainmenu-template">

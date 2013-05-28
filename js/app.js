@@ -1,14 +1,16 @@
 require([
 		"underscore",
+		"model/DeviceSettings-model",
 		"view/Device-view", 
 		"view/MenuScreen-view",
 		"view/SettingsScreen-view",
 		"view/AboutScreen-view", 
 		"view/SplashScreen-view", 
 		"view/MainMenuItem-view",
-		//"model/DeviceSettings-model",
+		"view/ViewMenuItem-view",
+		"view/RadioMenuItem-view",
 	],
-	function(_, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MainMenuItem) {
+	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem) {
 		var MainMenu = new MenuScreen({
 			items: [
 				new MainMenuItem({title: "Измерение", icon: "img/menu-1.png"}),
@@ -22,31 +24,30 @@ require([
 			]
 		});
 
-		/*var SettingsMenu = SettingsScreen({
+		var SettingsMenu = new SettingsScreen({
 			items: [
-				new MenuItem({title: "Язык", icon: "img/settings-lang-icon.png"}),
-				new MenuItem({title: "Порог фона", icon: "img/settings-level-icon.png"}),
-				new MenuItem({title: "Порог дозы", icon: "img/settings-dose-level-icon.png"}),
-				new MenuItem({title: "Звук", icon: "img/settings-sound-icon.png"}),
-				new MenuItem({title: "Экран", icon: "img/settings-screen-icon.png"}),
-				new MenuItem({title: "Питание", icon: "img/settings-battery-icon.png"}),
-				new MenuItem({
+				new ViewMenuItem({title: "Язык", icon: "img/settings-lang-icon.png"}),
+				new ViewMenuItem({title: "Порог фона", icon: "img/settings-level-icon.png"}),
+				new ViewMenuItem({title: "Порог дозы", icon: "img/settings-dose-level-icon.png"}),
+				new ViewMenuItem({title: "Звук", icon: "img/settings-sound-icon.png"}),
+				new ViewMenuItem({title: "Экран", icon: "img/settings-screen-icon.png"}),
+				new ViewMenuItem({title: "Питание", icon: "img/settings-battery-icon.png"}),
+				new RadioMenuItem({
 					title: "Блютуз", 
 					icon: "img/settings-bt-icon.png", 
-					type: "radio", 
 					value: DeviceSettings.get("bluetooth"), 
 					action: function() {
-						this.set("value", !this.get("value"));
-						DeviceSettings.set("bluetooth", this.get("value"))
+						this.value = !this.value;
+						DeviceSettings.set("bluetooth", this.value);
 					}
 				}),
-				new MenuItem({title: "Выход", icon: "img/settings-back-icon.png", view: "__prevScreen__"}),
+				new ViewMenuItem({title: "Выход", icon: "img/settings-back-icon.png", view: "__prevScreen__"}),
 			]
-		})*/
+		})
 
 		Device.addScreen("main", MainMenu);
 		Device.addScreen("about", new AboutScreen);
-		//Device.addScreen("settings", SettingsMenu);
+		Device.addScreen("settings", SettingsMenu);
 		Device.addScreen("splash", new SplashScreen);
 
 		Device.setCurrentScreen("splash");
