@@ -9,6 +9,9 @@ define(["view/MenuItem-view"], function(MenuItemView) {
 		},
 		initialize: function() {
 			this.value = this.options.value;
+			if(this.options.afterInit) {
+				this.options.afterInit.apply(this);
+			}
 		},
 		action: function() {
 			if(this.options.action) {

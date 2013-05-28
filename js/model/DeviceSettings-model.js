@@ -4,7 +4,9 @@ define(["backbone"], function(Backbone) {
 	DeviceSettingsModel = Backbone.Model.extend({
 		defaults: function() {
 			return {
-				bluetooth: false,	
+				bluetooth: false,
+				language: "ru",
+				backgroundThreshold: 0.3,	
 			}
 		},
 	});

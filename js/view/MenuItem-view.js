@@ -4,9 +4,9 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 		constructor: function(options) {
 			EventDrivenView.call(this, options);
 			this.title = options.title;
-			if(options.icon) {
-				this.icon = new Image;
-				this.icon.src = this.options.icon;
+			if(options.iconPath) {
+				this.img = new Image;
+				this.img.src = this.options.iconPath;
 			}
 		},
 		render: function() {

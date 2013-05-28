@@ -35,14 +35,14 @@
   	  </div>
  		</script>
  		<script type="text/template" id="view-menu-item-template">
-			<% if(item.icon) { %>
-				<img class="icon" src="<%=item.icon.src%>"/>
+			<% if(item.options.icon) { %>
+				<span class="icon <%=item.options.icon%>"></span>
 			<% } %>
 			<span class="title"><%=item.title%></span>
  		</script>
  		<script type="text/template" id="radio-menu-item-template">
- 				<% if(item.icon) { %>
- 					<img class="icon" src="<%=item.icon.src%>"/>
+ 				<% if(item.options.icon) { %>
+ 					<span class="icon <%=item.options.icon%>"></span>
 				<% } %>
 				<span class="title"><%=item.title%></span>
 				<span class="radio<%= item.value ? ' enabled' : ''%>">&nbsp;</span>
@@ -56,8 +56,8 @@
  			</ul>
  		</script>
  		<script type="text/template" id="mainmenu-item-template">
-			<% if(item.icon) { %>
-				<img src="<%=item.icon.src%>"/>
+			<% if(item.img) { %>
+				<img class="icon" src="<%=item.img.src%>"/>
 			<% } %>
 			<span><%=item.title%></span>
  		</script>

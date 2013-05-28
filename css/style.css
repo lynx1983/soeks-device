@@ -90,6 +90,15 @@ ul.menu li img.icon {
 	vertical-align: middle;
 }
 
+ul.menu span.icon {
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
+	display: inline-block;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+}
+
 ul.menu li.active {
 	background-color: #FFFFFF;
 	color: #000000;
@@ -319,4 +328,48 @@ ul.activity-indicator li span.warning {
 
 ul.activity-indicator li span.danger {
 	background-color: #ed1c24;
+}
+
+span.icon.lang {
+	background-image: url('../img/settings-lang-icon.png');
+}
+
+span.icon.level {
+	background-image: url('../img/settings-level-icon.png');
+}
+
+span.icon.dose-level {
+	background-image: url('../img/settings-dose-level-icon.png');
+}
+
+span.icon.sound {
+	background-image: url('../img/settings-sound-icon.png');
+}
+
+span.icon.screen {
+	background-image: url('../img/settings-screen-icon.png');
+}
+
+span.icon.battery {
+	background-image: url('../img/settings-battery-icon.png');
+}
+
+span.icon.bluetooth {
+	background-image: url('../img/settings-bt-icon.png');
+}
+
+span.icon.exit {
+	background-image: url('../img/settings-back-icon.png');
+}
+
+li.active span.icon.exit {
+	background-position: -16px 0;
+}
+
+span.icon.lang-ru {
+	background-image: url('../img/settings-lang-ru.png');
+}
+
+span.icon.lang-en {
+	background-image: url('../img/settings-lang-en.png');
 }
