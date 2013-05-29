@@ -36,7 +36,7 @@
  		</script>
  		<script type="text/template" id="measurement-screen-template">
     	<div class="view measurement">
-    		<div class="last-value"><%=lastValue%><span class="icon"></span><span class="units">uSv/h<span></div>
+    		<div class="last-value"><%=lastValue%><span class="icon"></span><span class="units"><%=unit%><span></div>
     		<div class="bg-threshold"><%=backgroundThreshold%></div> 
     		<ul class="activity-indicator left clearfix">
 	 				<% _.each(leftMarks, function(mark) { %>

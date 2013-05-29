@@ -7,13 +7,12 @@ define(["backbone"], function(Backbone) {
 				leftValue: 0,
 				rightValue: 0,
 				level: 0,
-				tag: "",
 				timestamp: new Date().getTime(),
 			}
 		},
 		getValue: function() {
 			return (this.get("leftValue") + this.get("rightValue")) / 2;
-		}
+		},
 	});
 
 	return MeasurementModel;

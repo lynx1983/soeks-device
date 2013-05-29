@@ -5,28 +5,37 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 		initialize: function() {
 			this.levels = [{
 					probability: .80,
-					minimum: 0,
-					maximum: 30,
-					tag: 'normal',
+					minimum: 100,
+					maximum: 300,
 				},
 				{
 					probability: .10,
-					minimum: 30,
-					maximum: 75,
-					tag: 'normal',
+					minimum: 300,
+					maximum: 400,
 				},
 				{
 					probability: .07,
-					minimum: 75,
-					maximum: 90,
-					tag: 'warning',
+					minimum: 400,
+					maximum: 1200,
 				},
 				{
 					probability: .03,
-					minimum: 90,
-					maximum: 100,
-					tag: 'danger',
+					minimum: 1200,
+					maximum: 100000,
 				}];
+
+			this.tags = [{
+				level: 400,
+				tag: 'normal',
+			},
+			{
+				level: 1200,
+				tag: 'warning',
+			},
+			{
+				level: 100000,
+				tag: 'danger',
+			}];
 
 			this.difference = 10;
 
@@ -48,12 +57,12 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 			});
 			var value = _.random(level.minimum, level.maximum);
 
-			var difference = _.random(-this.difference, this.difference);
+			var measurementLeftError = _.random(-this.difference, this.difference) / 100;
+			var measurementRightError = _.random(-this.difference, this.difference) / 100;
 
 			this.add({
-				leftValue: value - difference / 2,
-				rightValue: value + difference / 2,
-				tag: level.tag,
+				leftValue: value + (value * measurementLeftError),
+				rightValue: value + (value * measurementRightError),
 			});
 		},
 		doMeasure: function() {
@@ -63,7 +72,18 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 			} else {
 				this.newMeasure();
 			}
-		}
+		},
+		formatValue: function(value) {
+			return (value / 1000).toFixed(2);
+		},
+		getUnit: function(value) {
+			return '&#956;Sv/h';
+		},
+		getTag: function(value) {
+			return _.find(this.tags, function(item) {
+				return value <= item.level;
+			}).tag;
+		}		
 	});
 	return new MeasurementsCollection;
 });

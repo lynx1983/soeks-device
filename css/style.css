@@ -266,6 +266,14 @@ div.button.spot {
 	background-image: url('../img/button-spot.png');
 }
 
+div.button.spot-warning {
+	background-image: url('../img/button-spot-yellow.png');
+}
+
+div.button.spot-danger {
+	background-image: url('../img/button-spot-red.png');
+}
+
 div.button.select {
 	background-image: url('../img/button-select.png');
 	background-position: 0px 1px;

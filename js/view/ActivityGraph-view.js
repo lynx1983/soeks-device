@@ -2,8 +2,8 @@ define(["backbone", "collection/Measurements-collection"], function(Bakcbone, Me
 	var ActivityGraphView; 
 	ActivityGraphView = Backbone.View.extend({
 		defaults: {
-			min: 0,
-			max: 12,
+			min: 1,
+			max: 11,
 			length: 11,
 		},
 		template: _.template($('#activitygraph-template').html()),
@@ -13,14 +13,19 @@ define(["backbone", "collection/Measurements-collection"], function(Bakcbone, Me
 		},
 		render: function() {
 			var marks = [];
-			var scale = this.options.max;
-			_.each(MeasurementsCollection.last(this.options.length).reverse(), function(item) {
+			var lastValues = MeasurementsCollection.last(this.options.length).reverse();
+			var maxValue = _.max(lastValues, function(item) {return item.getValue()}).getValue();
+
+			_.each(lastValues, function(item) {
+				var value = item.getValue();
+				var normalizedValue = Math.round(this.options.max * (value / maxValue));
+				if(normalizedValue < this.options.min) normalizedValue = this.options.min;
 				marks.push({
-					value: Math.round(scale * (item.getValue() / 100)),
-					tag: item.get('tag'),
+					value: normalizedValue,
+					tag: MeasurementsCollection.getTag(value),
 					level: item.get('level'),
 				})
-			})
+			}, this)
 			this.$el.html(this.template({marks: marks}))
 			return this;
 		},
