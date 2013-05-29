@@ -389,6 +389,38 @@ div.measurement ul.activity-indicator.right li {
 
 }
 
+div.measurement.normal ul.activity-indicator li span {
+	background-color: #00ff00;
+}
+
+div.measurement.warning ul.activity-indicator li span {
+	background-color: #fff200;
+}
+
+div.measurement.danger ul.activity-indicator li span {
+	background-color: #ed1c24;
+}
+
+div.measurement .message {
+	position: absolute;
+	text-align: center;
+	top: 50px;
+	height: 40px;
+	font-size: 14px;
+}
+
+div.measurement.normal .message {
+	color: #00ff00;
+}
+
+div.measurement.warning .message {
+	color: #fff200;
+}
+
+div.measurement.danger .message {
+	color: #ed1c24;
+}
+
 div.measurement div.last-value {
 	position: absolute;
 	top: 14px;

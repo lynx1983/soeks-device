@@ -39,33 +39,46 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 			var values = MeasurementsCollection.last(this.options.length).reverse();
 			var leftMax = _.max(values, function(item) {return item.get("leftValue")}).get("leftValue");
 			var rightMax = _.max(values, function(item) {return item.get("rightValue")}).get("rightValue");
+
+			var sum = 0;
+
 			_.each(values, function(item) {
 				var normalizedValue = Math.round(this.options.max * (item.get("leftValue") / leftMax))
 				normalizedValue = normalizedValue < this.options.min ? this.options.min : normalizedValue;
 				leftMarks.push({
 					value: normalizedValue,
-					tag: MeasurementsCollection.getTag(item.get("leftValue")),
 					level: item.get('level'),
 				});
 				normalizedValue = Math.round(this.options.max * (item.get("rightValue") / rightMax))
 				normalizedValue = normalizedValue < this.options.min ? this.options.min : normalizedValue;
 				rightMarks.push({
 					value: normalizedValue,
-					tag: MeasurementsCollection.getTag(item.get("rightValue")),
 					level: item.get('level'),
 				});
+				sum += item.getValue();
 			}, this);
+
+			var avgValue = sum / values.length;
+
+			var tag = MeasurementsCollection.getTag(avgValue);
+
+			if(tag == 'normal' && avgValue / 1000 > DeviceSettings.get("backgroundThreshold")) {
+				tag = 'warning';
+			}
+
 			this.$el.html(this.template({
-				lastValue: MeasurementsCollection.formatValue(lastValue),
+				lastValue: MeasurementsCollection.formatValue(avgValue),
 				leftMarks: leftMarks,
 				rightMarks: rightMarks,
-				unit: MeasurementsCollection.getUnit(lastValue),
+				unit: MeasurementsCollection.getUnit(avgValue),
 				readiness: 41 * this.readiness / 100,
 				accuracy: 41 * this.accuracy / 100,
+				message: this.getScreenMessage(tag),
+				tag: tag,
 				backgroundThreshold: DeviceSettings.get("backgroundThreshold")
 			}));
 			if(lastItem.get("level") == 0) {
-				switch(lastLeftValue) {
+				switch(MeasurementsCollection.getTag(lastLeftValue)) {
 					case 'warning': 
 						this.eventBus.trigger("device.panel.leftButton", "spot-warning");
 						break;
@@ -75,7 +88,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 					default:
 						this.eventBus.trigger("device.panel.leftButton", "spot");
 				}
-				switch(MeasurementsCollection.getTag(MeasurementsCollection.last().get("rightValue"))) {
+				switch(MeasurementsCollection.getTag(lastRightValue)) {
 					case 'warning': 
 						this.eventBus.trigger("device.panel.rightButton", "spot-warning");
 						break;
@@ -95,6 +108,16 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		onMiddleButton: function() {
 			this.eventBus.trigger("device.screen.prev");
 		},
+		getScreenMessage: function(tag) {
+			switch(tag) {
+				case 'warning': 
+					return "повышенный радиационный фон";
+				case 'danger':
+					return "опасный радиационный фон";
+				default:
+					return "радиационный фон в норме";
+			}
+		}
 	});
 	return MeasurementScreen;
 });
