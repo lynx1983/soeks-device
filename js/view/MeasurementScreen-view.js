@@ -62,7 +62,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 
 			var tag = MeasurementsCollection.getTag(avgValue);
 
-			if(tag == 'normal' && avgValue / 1000 > DeviceSettings.get("backgroundThreshold")) {
+			if(tag == 'normal' && avgValue > DeviceSettings.get("backgroundThreshold")) {
 				tag = 'warning';
 			}
 
@@ -75,7 +75,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				accuracy: 41 * this.accuracy / 100,
 				message: this.getScreenMessage(tag),
 				tag: tag,
-				backgroundThreshold: DeviceSettings.get("backgroundThreshold")
+				backgroundThreshold: MeasurementsCollection.formatValue(DeviceSettings.get("backgroundThreshold"))
 			}));
 			if(lastItem.get("level") == 0) {
 				switch(MeasurementsCollection.getTag(lastLeftValue)) {

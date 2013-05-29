@@ -455,6 +455,127 @@ div.measurement span.icon {
 	height: 14px;
 }
 
+div.cumulative div.dose {
+	width: 120px;
+	height: 35px;
+	text-align: center;
+	font-size: 22px;
+	position: absolute;
+	top: 20px;
+	left: 4px;
+	line-height: 35px;
+	border: transparent 1px solid;
+}
+
+div.cumulative div.dose.normal {
+	border-color: #00ff00;
+}
+
+div.cumulative div.dose.warning {
+	border-color: #fff200;
+}
+
+@keyframes blink { 50% { border-color: #ed1c24; } }
+
+@-webkit-keyframes blink { 50% { border-color: #ed1c24; } }
+
+div.cumulative div.dose.danger {
+	animation: blink .5s step-end infinite alternate;
+	-webkit-animation: blink .5s step-end infinite alternate;
+}
+
+div.cumulative span.dose {
+	float: left;
+	margin-left: 5px;
+}
+
+div.cumulative span.units {
+	float: right;
+	margin-right: 5px;
+}
+
+div.cumulative div.title {
+	text-align: center;
+	font-size: 14px;
+	height: 16px;
+	line-height: 16px;
+}
+
+div.cumulative div.time {
+	position: absolute;
+	left: 0;
+	width: 128px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 12px;
+	top: 69px;
+	text-align: right;
+	background: url('../img/time-bg.png') left center no-repeat;
+}
+
+div.cumulative div.time span.time {
+	margin-right: 5px;
+}
+
+div.cumulative div.activity-indicator {
+	width: 126px;
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+	height: 16px;
+	top: auto;
+	border-top: 1px solid #FFFFFF; 
+	border-left: 1px solid #FFFFFF;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+div.cumulative div.bg-threshold {
+	position: absolute;
+	font-size: 10px;
+	bottom: 100%;
+	margin-bottom: -2px;
+	background: #000;
+	padding: 0 2px;
+}
+
+div.cumulative ul.activity-indicator {
+	position: absolute;
+	width: 60px;
+	height: 14px;
+	bottom: 0;
+	left: 0
+}
+
+div.cumulative div.last-value {
+	width: 63px;
+	height: 16px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-bottom: -1px;
+	background: #000000;
+	line-height: 16px;
+	padding-left: 2px;
+	font-size: 14px;
+}
+
+div.cumulative div.last-value.normal span.value {
+	color: #00ff00;
+}
+
+div.cumulative div.last-value.warning span.value {
+	color: #fff200;
+}
+
+div.cumulative div.last-value.danger span.value {
+	color: #ed1c24;
+}
+
+div.cumulative div.last-value span.units {
+	font-size: 11px;
+	color: #FFFFFF;
+}
+
 span.icon.lang {
 	background-image: url('../img/settings-lang-icon.png');
 }

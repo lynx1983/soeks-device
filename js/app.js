@@ -6,16 +6,17 @@ require([
 		"view/SettingsScreen-view",
 		"view/AboutScreen-view",
 		"view/MeasurementScreen-view",
+		"view/CumulativeDoseScreen-view",
 		"view/SplashScreen-view", 
 		"view/MainMenuItem-view",
 		"view/ViewMenuItem-view",
 		"view/RadioMenuItem-view",
 	],
-	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem) {
+	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem) {
 		var MainMenu = new MenuScreen({
 			items: [
 				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png", view: "measurement"}),
-				new MainMenuItem({title: "Накоп. доза", iconPath: "img/menu-2.png"}),
+				new MainMenuItem({title: "Накоп. доза", iconPath: "img/menu-2.png", view: "cumulativeDose"}),
 				new MainMenuItem({title: "История", iconPath: "img/menu-3.png"}),
 				new MainMenuItem({title: "Информация", iconPath: "img/menu-4.png"}),
 				new MainMenuItem({title: "Настройки", iconPath: "img/menu-5.png", view: "settings"}),
@@ -86,11 +87,11 @@ require([
 					title: "0,3 uSv/h",
 					value: DeviceSettings.get("backgroundThreshold") == 0.3,
 					action: function() {
-						DeviceSettings.set("backgroundThreshold", 0.3);
+						DeviceSettings.set("backgroundThreshold", 300);
 					},
 					afterInit: function() {
 						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
-							this.value = DeviceSettings.get("backgroundThreshold") == 0.3;
+							this.value = DeviceSettings.get("backgroundThreshold") == 300;
 							this.render();							
 						}, this));
 					},
@@ -99,7 +100,7 @@ require([
 					title: "0,4 uSv/h",
 					value: DeviceSettings.get("backgroundThreshold") == 0.4,
 					action: function() {
-						DeviceSettings.set("backgroundThreshold", 0.4);
+						DeviceSettings.set("backgroundThreshold", 400);
 					},
 					afterInit: function() {
 						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
@@ -112,11 +113,11 @@ require([
 					title: "0,5 uSv/h",
 					value: DeviceSettings.get("backgroundThreshold") == 0.5,
 					action: function() {
-						DeviceSettings.set("backgroundThreshold", 0.5);
+						DeviceSettings.set("backgroundThreshold", 500);
 					},
 					afterInit: function() {
 						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
-							this.value = DeviceSettings.get("backgroundThreshold") == 0.5;
+							this.value = DeviceSettings.get("backgroundThreshold") == 500;
 							this.render();							
 						}, this));
 					},
@@ -126,6 +127,7 @@ require([
 		})
 
 		Device.addScreen("measurement", new MeasurementScreen);
+		Device.addScreen("cumulativeDose", new CumulativeDoseScreen);
 		Device.addScreen("main", MainMenu);
 		Device.addScreen("about", new AboutScreen);
 		Device.addScreen("settings", SettingsMenu);

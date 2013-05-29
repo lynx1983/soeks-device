@@ -6,7 +6,8 @@ define(["backbone"], function(Backbone) {
 			return {
 				bluetooth: false,
 				language: "ru",
-				backgroundThreshold: 0.3,	
+				backgroundThreshold: 300,	
+				cumulativeThreshold: 10000,
 			}
 		},
 	});

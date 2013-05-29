@@ -34,6 +34,25 @@
 	      About
   	  </div>
  		</script>
+ 		<script type="text/template" id="cumulative-dose-screen-template">
+ 			<div class="view cumulative">
+ 				<div class="title"><%=title%></div>
+ 				<div class="dose <%=doseTag%>">
+ 					<span class="dose"><%=dose%></span>
+ 					<span class="units"><%=unit%></span>
+ 				</div>
+ 				<div class="time"><span class="time"><%=time%></span></div>
+ 				<div class="activity-indicator">
+ 					<div class="bg-threshold"><%=backgroundThreshold%></div>
+ 					<ul class="activity-indicator left clearfix">
+		 				<% _.each(marks, function(mark) { %>
+		 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+		 				<% }); %>
+ 					</ul>
+ 					<div class="last-value <%=tag%>"><span class="value"><%=lastValue%><span><span class="units"><%=lastValueUnit%></div>
+ 				</div>
+ 			</div>
+ 		</script>
  		<script type="text/template" id="measurement-screen-template">
     	<div class="view measurement <%=tag%>">
     		<div class="graph readiness-graph" style="height: <%=readiness%>px;"></div>

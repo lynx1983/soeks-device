@@ -47,6 +47,10 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 			})
 
 			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 1000);
+
+			this.cumulativeDose = 0;
+
+			this.startTimestamp = new Date().getTime();
 		},
 		newMeasure: function() {
 			var range = _.random(0, 100);
@@ -64,6 +68,8 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				leftValue: value + (value * measurementLeftError),
 				rightValue: value + (value * measurementRightError),
 			});
+
+			this.cumulativeDose += this.last().getValue();
 		},
 		doMeasure: function() {
 			var lastMeasure = this.last();
@@ -74,15 +80,57 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 			}
 		},
 		formatValue: function(value) {
-			return (value / 1000).toFixed(2);
+			var formatedValue;
+
+			formatedValue = value / 1000;
+
+			if(value >= 100000) {
+				formatedValue = value / 1000000;
+			}
+
+			if(value >= 100000000) {
+				formatedValue = value / 1000000000;
+			}			
+
+			return formatedValue.toFixed(2).replace(/\./, ',');
 		},
 		getUnit: function(value) {
-			return '&#956;Sv/h';
+			return this.getDoseUnit(value) + '/h';
+		},
+		getDoseUnit: function(value) {
+			if(value >= 100000000) {
+				return 'Sv';
+			}
+			if(value >= 100000) {
+				return 'mSv';
+			}
+			
+			return '&#956;Sv';
 		},
 		getTag: function(value) {
 			return _.find(this.tags, function(item) {
 				return value <= item.level;
 			}).tag;
+		},
+		getMeasurementTime: function() {
+			return new Date().getTime() - this.startTimestamp;
+		},
+		formatTime: function(timestamp) {
+			timestamp /= Math.round(1000);
+			var days = Math.round(timestamp / (60 * 60 * 24));
+			timestamp -= days * 60 * 60 * 24;
+			var hours = Math.round(timestamp / (60 * 60));
+			timestamp -= hours * 60 * 60;
+			var minutes = Math.round(timestamp / 60);
+			timestamp -= minutes * 60;
+			var seconds = Math.round(timestamp);
+			return this.stringPad(days.toString(), 4, 0) + ':' + 
+				this.stringPad(hours.toString(), 2, 0) + ':' + 
+				this.stringPad(minutes.toString(), 2, 0) + ':' + 
+				this.stringPad(seconds.toString(), 2, 0);
+		},
+		stringPad: function(str, length, char) {
+			return new Array(length - str.length + 1).join(char) + str;
 		}		
 	});
 	return new MeasurementsCollection;
