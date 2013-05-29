@@ -8,6 +8,8 @@ define(["backbone"], function(Backbone) {
 				language: "ru",
 				backgroundThreshold: 300,	
 				cumulativeThreshold: 10000,
+				soundEnabled: true,
+				buttonsSoundEnabled: true,
 			}
 		},
 	});

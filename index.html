@@ -83,8 +83,15 @@
  					<span class="icon <%=item.options.icon%>"></span>
 				<% } %>
 				<span class="title"><%=item.title%></span>
-				<span class="radio<%= item.value ? ' enabled' : ''%>">&nbsp;</span>
- 		</script> 		
+				<span class="radio<%= item.value ? ' checked' : ''%>">&nbsp;</span>
+ 		</script>
+ 		<script type="text/template" id="checkbox-menu-item-template">
+ 				<% if(item.options.icon) { %>
+ 					<span class="icon <%=item.options.icon%>"></span>
+				<% } %>
+				<span class="title"><%=item.title%></span>
+				<span class="checkbox<%= item.value ? ' checked' : ''%>">&nbsp;</span>
+ 		</script>
  		<script type="text/template" id="settingsmenu-template">
  			<ul class="menu">
  			</ul>

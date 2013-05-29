@@ -11,8 +11,9 @@ require([
 		"view/MainMenuItem-view",
 		"view/ViewMenuItem-view",
 		"view/RadioMenuItem-view",
+		"view/CheckboxMenuItem-view",
 	],
-	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem) {
+	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem, CheckboxMenuItem) {
 		var MainMenu = new MenuScreen({
 			items: [
 				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png", view: "measurement"}),
@@ -31,7 +32,7 @@ require([
 				new ViewMenuItem({title: "Язык", icon: "lang", view: "langSettings"}),
 				new ViewMenuItem({title: "Порог фона", icon: "level", view: "bgThresholdSettings"}),
 				new ViewMenuItem({title: "Порог дозы", icon: "dose-level"}),
-				new ViewMenuItem({title: "Звук", icon: "sound"}),
+				new ViewMenuItem({title: "Звук", icon: "sound", view: "soundSettings"}),
 				new ViewMenuItem({title: "Экран", icon: "screen"}),
 				new ViewMenuItem({title: "Питание", icon: "battery"}),
 				new RadioMenuItem({
@@ -76,6 +77,40 @@ require([
 							this.render();							
 						}, this));
 					}
+				}),
+				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
+			]
+		});
+
+		var SoundSettingsMenu = new SettingsScreen({
+			items: [
+				new CheckboxMenuItem({
+					title: "Разрешить",
+					icon: "sound-enabled",
+					value: DeviceSettings.get("soundEnabled"),
+					action: function() {
+						DeviceSettings.set("soundEnabled", !this.value);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:soundEnabled', _.bind(function() {
+							this.value = DeviceSettings.get("soundEnabled");
+							this.render();							
+						}, this));
+					},
+				}),
+				new CheckboxMenuItem({
+					title: "Кнопки",
+					icon: "buttons-sound",
+					value: DeviceSettings.get("buttonsSoundEnabled"),
+					action: function() {
+						DeviceSettings.set("buttonsSoundEnabled", !this.value);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:buttonsSoundEnabled', _.bind(function() {
+							this.value = DeviceSettings.get("buttonsSoundEnabled");
+							this.render();							
+						}, this));
+					},
 				}),
 				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
 			]
@@ -133,6 +168,7 @@ require([
 		Device.addScreen("settings", SettingsMenu);
 		Device.addScreen("langSettings", LanguageSettingsMenu);
 		Device.addScreen("bgThresholdSettings", BackgroundThresholdMenu);
+		Device.addScreen("soundSettings", SoundSettingsMenu);
 		Device.addScreen("splash", new SplashScreen);
 
 		Device.setCurrentScreen("splash");

@@ -132,7 +132,7 @@ ul.menu li span.radio {
 	float: right;
 }
 
-ul.menu li span.radio.enabled {
+ul.menu li span.radio.checked {
 	background-image: url('../img/settings-radio-enabled-icon.png');
 }
 
@@ -140,8 +140,20 @@ ul.menu li.active span.radio {
 	background-image: url('../img/settings-radio-disabled-active-icon.png');
 }
 
-ul.menu li.active span.radio.enabled {
+ul.menu li.active span.radio.checked {
 	background-image: url('../img/settings-radio-enabled-active-icon.png');
+}
+
+ul.menu li span.checkbox {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url('../img/settings-checkbox-unchecked-icon.png') no-repeat;
+	float: right;
+}
+
+ul.menu li span.checkbox.checked {
+	background-image: url('../img/settings-checkbox-checked-icon.png');
 }
 
 div.panel {
@@ -618,4 +630,20 @@ span.icon.lang-ru {
 
 span.icon.lang-en {
 	background-image: url('../img/settings-lang-en.png');
+}
+
+span.icon.sound-enabled {
+	background-image: url('../img/settings-sound-enabled-icon.png');
+}
+
+li.active span.icon.sound-enabled {
+	background-position: -16px 0;
+}
+
+span.icon.buttons-sound {
+	background-image: url('../img/settings-buttons-sound-icon.png');
+}
+
+li.active span.icon.buttons-sound {
+	background-position: -16px 0;
 }
