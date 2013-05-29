@@ -400,6 +400,29 @@ div.measurement div.last-value span.units {
 	font-size: 14px;
 }
 
+div.measurement .graph {
+	position: absolute;
+	bottom: 83px;
+	width: 6px;
+	background-repeat: repeat-y;
+}
+
+div.measurement .graph.readiness-graph {
+	background-image: url('../img/readiness-graph-bg.png');
+	left: 10px;
+}
+
+div.measurement .graph.accuracy-graph {
+	background-image: url('../img/accuracy-graph-bg.png');
+	left: 19px;
+}
+
+div.measurement span.icon {
+	display: inline-block;
+	width: 6px;
+	height: 14px;
+}
+
 span.icon.lang {
 	background-image: url('../img/settings-lang-icon.png');
 }
