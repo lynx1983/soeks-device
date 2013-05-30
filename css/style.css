@@ -647,3 +647,32 @@ span.icon.buttons-sound {
 li.active span.icon.buttons-sound {
 	background-position: -16px 0;
 }
+
+span.icon.sensor-sound {
+	background-image: url('../img/settings-sensor-sound-icon.png');
+}
+
+span.icon.threshold-sound {
+	background-image: url('../img/settings-threshold-sound-icon.png');
+}
+
+li.active span.icon.threshold-sound {
+	background-position: -16px 0;
+}
+
+span.icon.battery-settings {
+	background-image: url('../img/settings-battery-type-icon.png');
+}
+
+span.icon.accumulator-settings {
+	background-image: url('../img/settings-accumulator-type-icon.png');
+}
+
+li.active span.icon.accumulator-settings {
+	background-position: -16px 0;
+}
+
+span.icon.autooff-settings {
+	background-image: url('../img/settings-autooff-icon.png');
+}
+

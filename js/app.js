@@ -34,7 +34,7 @@ require([
 				new ViewMenuItem({title: "Порог дозы", icon: "dose-level"}),
 				new ViewMenuItem({title: "Звук", icon: "sound", view: "soundSettings"}),
 				new ViewMenuItem({title: "Экран", icon: "screen"}),
-				new ViewMenuItem({title: "Питание", icon: "battery"}),
+				new ViewMenuItem({title: "Питание", icon: "battery", view: "batterySettings"}),
 				new RadioMenuItem({
 					title: "Блютуз", 
 					icon: "bluetooth", 
@@ -112,6 +112,52 @@ require([
 						}, this));
 					},
 				}),
+				new CheckboxMenuItem({
+					title: "Датчик",
+					icon: "sensor-sound",
+					value: DeviceSettings.get("sensorSoundEnabled"),
+					action: function() {
+						DeviceSettings.set("sensorSoundEnabled", !this.value);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:sensorSoundEnabled', _.bind(function() {
+							this.value = DeviceSettings.get("sensorSoundEnabled");
+							this.render();							
+						}, this));
+					},
+				}),
+				new CheckboxMenuItem({
+					title: "Порог",
+					icon: "threshold-sound",
+					value: DeviceSettings.get("thresholdSoundEnabled"),
+					action: function() {
+						DeviceSettings.set("thresholdSoundEnabled", !this.value);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:thresholdSoundEnabled', _.bind(function() {
+							this.value = DeviceSettings.get("thresholdSoundEnabled");
+							this.render();							
+						}, this));
+					},
+				}),
+				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
+			]
+		});
+
+		var BatterySettingsMenu = new SettingsScreen({
+			items: [
+				new ViewMenuItem({
+					title: "Батареи",
+					icon: "battery-settings",
+				}),
+				new ViewMenuItem({
+					title: "Аккумуляторы",
+					icon: "accumulator-settings",
+				}),
+				new ViewMenuItem({
+					title: "Автовыкл.",
+					icon: "autooff-settings",
+				}),
 				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
 			]
 		});
@@ -169,6 +215,7 @@ require([
 		Device.addScreen("langSettings", LanguageSettingsMenu);
 		Device.addScreen("bgThresholdSettings", BackgroundThresholdMenu);
 		Device.addScreen("soundSettings", SoundSettingsMenu);
+		Device.addScreen("batterySettings", BatterySettingsMenu);
 		Device.addScreen("splash", new SplashScreen);
 
 		Device.setCurrentScreen("splash");

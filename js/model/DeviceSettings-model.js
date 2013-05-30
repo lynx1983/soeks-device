@@ -10,6 +10,8 @@ define(["backbone"], function(Backbone) {
 				cumulativeThreshold: 10000,
 				soundEnabled: true,
 				buttonsSoundEnabled: true,
+				sensorSoundEnabled: true,
+				thresholdSoundEnabled: true,
 			}
 		},
 	});
