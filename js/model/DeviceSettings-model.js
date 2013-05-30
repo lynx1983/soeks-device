@@ -8,6 +8,7 @@ define(["backbone"], function(Backbone) {
 				language: "ru",
 				backgroundThreshold: 300,	
 				cumulativeThreshold: 10000,
+				dangerThreshold: 1400,
 				soundEnabled: true,
 				buttonsSoundEnabled: true,
 				sensorSoundEnabled: true,

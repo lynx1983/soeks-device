@@ -7,18 +7,19 @@ require([
 		"view/AboutScreen-view",
 		"view/MeasurementScreen-view",
 		"view/CumulativeDoseScreen-view",
+		"view/HistoryScreen-view",
 		"view/SplashScreen-view", 
 		"view/MainMenuItem-view",
 		"view/ViewMenuItem-view",
 		"view/RadioMenuItem-view",
 		"view/CheckboxMenuItem-view",
 	],
-	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem, CheckboxMenuItem) {
+	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, HistoryScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem, CheckboxMenuItem) {
 		var MainMenu = new MenuScreen({
 			items: [
 				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png", view: "measurement"}),
 				new MainMenuItem({title: "Накоп. доза", iconPath: "img/menu-2.png", view: "cumulativeDose"}),
-				new MainMenuItem({title: "История", iconPath: "img/menu-3.png"}),
+				new MainMenuItem({title: "История", iconPath: "img/menu-3.png", view: "history"}),
 				new MainMenuItem({title: "Информация", iconPath: "img/menu-4.png"}),
 				new MainMenuItem({title: "Настройки", iconPath: "img/menu-5.png", view: "settings"}),
 				new MainMenuItem({title: "Время", iconPath: "img/menu-6.png"}),
@@ -209,6 +210,7 @@ require([
 
 		Device.addScreen("measurement", new MeasurementScreen);
 		Device.addScreen("cumulativeDose", new CumulativeDoseScreen);
+		Device.addScreen("history", new HistoryScreen);
 		Device.addScreen("main", MainMenu);
 		Device.addScreen("about", new AboutScreen);
 		Device.addScreen("settings", SettingsMenu);

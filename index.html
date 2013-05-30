@@ -72,6 +72,21 @@
 	 			</ul>
   	  </div>
  		</script>
+ 		<script type="text/template" id="history-screen-template">
+ 			<div class="view history">
+ 				<div class="starttime"><%=startTime%></div>
+ 				<div class="graph">
+ 					<div class="warning level" style="left: <%=warningLevel%>px;"></div>
+ 					<div class="danger level" style="left: <%=dangerLevel%>px;"></div>
+ 					<ul class="marks">
+ 						<% _.each(marks, function(mark) { %>
+		 					<li><span class="<%=mark.tag%>" style="width: <%=mark.value%>px;"></span></li>
+		 				<% }); %>
+ 					</ul>
+ 				</div>
+ 				<div class="endtime"><%=endTime%></div>
+ 			</div>
+ 		</script>
  		<script type="text/template" id="view-menu-item-template">
 			<% if(item.options.icon) { %>
 				<span class="icon <%=item.options.icon%>"></span>

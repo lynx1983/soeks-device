@@ -130,8 +130,17 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				this.stringPad(minutes.toString(), 2, 0) + ':' + 
 				this.stringPad(seconds.toString(), 2, 0);
 		},
+		formatDate: function(timestamp) {
+			var string = this.stringPad(timestamp.getDate(), 2, 0) + '.' +
+			this.stringPad(timestamp.getMonth() + 1, 2, 0) + '.' +
+			timestamp.getFullYear().toString().substring(2) + ' ' +
+			this.stringPad(timestamp.getHours(), 2, 0) + ':' +
+			this.stringPad(timestamp.getMinutes(), 2, 0) + ':' +
+			this.stringPad(timestamp.getSeconds(), 2, 0);
+			return string;
+		},
 		stringPad: function(str, length, char) {
-			return new Array(length - str.length + 1).join(char) + str;
+			return new Array(length - (str).toString().length + 1).join(char) + str;
 		}		
 	});
 	return new MeasurementsCollection;

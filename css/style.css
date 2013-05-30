@@ -588,6 +588,68 @@ div.cumulative div.last-value span.units {
 	color: #FFFFFF;
 }
 
+div.history div.endtime,
+div.history div.starttime {
+	font-size: 10px;
+	height: 10px;
+	line-height: 10px;
+	overflow: hidden;
+}
+
+div.history div.starttime {
+	border-bottom: 1px solid #FFFFFF; 
+}
+
+div.history div.endtime {
+	border-top: 1px solid #FFFFFF; 
+}
+
+div.history div.graph {
+	height: 139px;
+	background: url('../img/history-bg.png') repeat;
+	position: relative;
+}
+
+div.history div.graph div.level {
+	position: absolute;
+	width: 1px;
+	top: 0;
+	bottom: 0;
+}
+
+div.history div.graph div.level.warning {
+	background-color: #fff200;
+}
+
+div.history div.graph div.level.danger {
+	background-color: #ed1c24;
+}
+
+div.history div.graph ul.marks {
+
+}
+
+div.history div.graph ul.marks li {
+	height: 1px;
+}
+
+div.history div.graph ul.marks li span {
+	display: block;
+	height: 1px;
+}
+
+div.history div.graph ul.marks li span.normal {
+	background-color: #00ff00;
+}
+
+div.history div.graph ul.marks li span.warning {
+	background-color: #fff200;
+}
+
+div.history div.graph ul.marks li span.danger {
+	background-color: #ed1c24;
+}
+
 span.icon.lang {
 	background-image: url('../img/settings-lang-icon.png');
 }
