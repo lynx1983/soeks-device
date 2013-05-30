@@ -108,22 +108,23 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 			return '&#956;Sv';
 		},
 		getTag: function(value) {
-			return _.find(this.tags, function(item) {
+			var level = _.find(this.tags, function(item) {
 				return value <= item.level;
-			}).tag;
+			});
+			return (level && level.tag) || 'danger';
 		},
 		getMeasurementTime: function() {
 			return new Date().getTime() - this.startTimestamp;
 		},
 		formatTime: function(timestamp) {
-			timestamp /= Math.round(1000);
-			var days = Math.round(timestamp / (60 * 60 * 24));
+			timestamp = Math.floor(timestamp / 1000);
+			var days = Math.floor(timestamp / (60 * 60 * 24));
 			timestamp -= days * 60 * 60 * 24;
-			var hours = Math.round(timestamp / (60 * 60));
+			var hours = Math.floor(timestamp / (60 * 60));
 			timestamp -= hours * 60 * 60;
-			var minutes = Math.round(timestamp / 60);
+			var minutes = Math.floor(timestamp / 60);
 			timestamp -= minutes * 60;
-			var seconds = Math.round(timestamp);
+			var seconds = Math.floor(timestamp);
 			return this.stringPad(days.toString(), 4, 0) + ':' + 
 				this.stringPad(hours.toString(), 2, 0) + ':' + 
 				this.stringPad(minutes.toString(), 2, 0) + ':' + 
