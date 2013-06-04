@@ -13,21 +13,38 @@ define(["view/Screen-view"], function(ScreenView) {
 		},
 		render: function() {
 			this.$el.html(this.template());
-			_.each(this.items, function(item, i) {
-				var renderedItem = $(item.render().$el);
-				this.$el.find('.main-menu').append(renderedItem);
-			}, this);
-			this.scrollToPosition(this.getActiveItemPosition())
+			var prevItem = $(this.getPrevItem().render().$el);
+			var currentItem = $(this.items[this.activeItemIndex].render().$el);
+			var nextItem = $(this.getNextItem().render().$el);
+			this.$el.find('.main-menu').html('');
+			this.$el.find('.main-menu').append(
+				prevItem,
+				currentItem,
+				nextItem
+			);
+			this.$el.scrollTop(128);
 			this.eventBus.trigger("device.panel.leftButton", "up");
 			this.eventBus.trigger("device.panel.middleButton", "ok");
 			this.eventBus.trigger("device.panel.rightButton", "down");
 			return this;
 		},
+		getNextItem: function() {
+			if(this.activeItemIndex + 1 >= this.items.length) {
+				return this.items[0];
+			} 
+			return this.items[this.activeItemIndex + 1];
+		},
+		getPrevItem: function() {
+			if(this.activeItemIndex - 1 < 0) {
+				return this.items[this.items.length - 1];
+			} 
+			return this.items[this.activeItemIndex - 1];
+		},
 		onLeftButton: function() {
 			if(this.isAnimationStarted()) return;
 			this.activeItemIndex--;
-			if(this.activeItemIndex < 0) this.activeItemIndex = 0;
-			this.scrollToPosition(this.getActiveItemPosition(), 500);
+			if(this.activeItemIndex < 0) this.activeItemIndex = this.items.length - 1;
+			this.scrollToPosition(0, 500);
 		},
 		onMiddleButton: function() {
 			var item = this.items[this.activeItemIndex];
@@ -36,13 +53,14 @@ define(["view/Screen-view"], function(ScreenView) {
 		onRightButton: function() {
 			if(this.isAnimationStarted()) return;
 			this.activeItemIndex++;
-			if(this.activeItemIndex > this.items.length - 1) this.activeItemIndex = this.items.length - 1;
-			this.scrollToPosition(this.getActiveItemPosition(), 500);
+			if(this.activeItemIndex > this.items.length - 1) this.activeItemIndex = 0;
+			this.scrollToPosition(256, 500);
 		},
 		startAnimation: function() {
 			this.animation = true;
 		},
 		stopAnimation: function() {
+			this.render();
 			this.animation = false;
 		},
 		isAnimationStarted: function() {
