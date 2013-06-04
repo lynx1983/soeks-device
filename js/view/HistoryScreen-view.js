@@ -10,6 +10,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		initialize: function() {
 			this.on("button.middle", this.onMiddleButton);
 			MeasurementsCollection.on("add", _.bind(this.updateScreen, this));
+			MeasurementsCollection.on("add change", _.bind(this.beep, this));
 			this.options = _.extend(this.defaults, this.options);
 			this.fullScreen = true;
 			this.page = 0;
@@ -20,6 +21,10 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		updateScreen: function() {
 			if(this.active) {
 				this.render();
+			}
+		},
+		beep: function() {
+			if(this.active) {
 				this.eventBus.trigger("device.beep");
 			}
 		},
