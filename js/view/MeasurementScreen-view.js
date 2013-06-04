@@ -27,6 +27,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				}
 				this.accuracy = this.accuracy > 100 ? 100 : this.accuracy;
 				this.render();
+				this.eventBus.trigger("device.beep");
 			}
 		},
 		render: function() {

@@ -9,7 +9,7 @@ define(["backbone"], function(Backbone) {
 				backgroundThreshold: 300,	
 				cumulativeThreshold: 10000,
 				dangerThreshold: 1400,
-				soundEnabled: true,
+				soundEnabled: false,
 				buttonsSoundEnabled: true,
 				sensorSoundEnabled: true,
 				thresholdSoundEnabled: true,

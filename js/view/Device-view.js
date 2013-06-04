@@ -2,7 +2,8 @@ define([
 	"view/EventDriven-view",
 	"view/TopPanel-view",
 	"view/BottomPanel-view",
-	], function(EventDrivenView, TopPanel, BottomPanel) {	
+	"model/DeviceSettings-model",
+	], function(EventDrivenView, TopPanel, BottomPanel, DeviceSettings) {	
 		var DeviceView;
 		DeviceView = EventDrivenView.extend({
 			el: $('#device'),
@@ -14,9 +15,17 @@ define([
 			initialize: function() {
 				this.screens = {};
 				this.screenStack = [];
+
+				this.beepSound = this.$el.find('audio').get(0);
 				
 				this.eventBus.bind("device.screen.change", _.bind(this.onScreenChange, this));
 				this.eventBus.bind("device.screen.prev", _.bind(this.setPrevScreen, this));
+				this.eventBus.bind("device.beep", _.bind(this.beep, this));
+			},
+			beep: function() {
+				if(DeviceSettings.get("soundEnabled") === true) {
+					this.beepSound.play();
+				}
 			},
 			render: function() {
 				this.setFullScreen(this.getCurrentScreen().fullScreen);
@@ -56,12 +65,21 @@ define([
 				}
 			},
 			leftButtonClick: function() {
+				if(DeviceSettings.get("soundEnabled") && DeviceSettings.get("buttonsSoundEnabled")) {
+					this.beep();
+				}
 				this.getCurrentScreen().trigger("button.left");
 			},
 			middleButtonClick: function() {
+				if(DeviceSettings.get("soundEnabled") && DeviceSettings.get("buttonsSoundEnabled")) {
+					this.beep();
+				}
 				this.getCurrentScreen().trigger("button.middle");
 			},
 			rightButtonClick: function() {
+				if(DeviceSettings.get("soundEnabled") && DeviceSettings.get("buttonsSoundEnabled")) {
+					this.beep();
+				}
 				this.getCurrentScreen().trigger("button.right");
 			},
 			onScreenChange: function(params) {

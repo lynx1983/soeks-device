@@ -20,6 +20,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		updateScreen: function() {
 			if(this.active) {
 				this.render();
+				this.eventBus.trigger("device.beep");
 			}
 		},
 		render: function() {
