@@ -32,7 +32,7 @@ require([
 			items: [
 				new ViewMenuItem({title: "Язык", icon: "lang", view: "langSettings"}),
 				new ViewMenuItem({title: "Порог фона", icon: "level", view: "bgThresholdSettings"}),
-				new ViewMenuItem({title: "Порог дозы", icon: "dose-level"}),
+				new ViewMenuItem({title: "Порог дозы", icon: "dose-level", view: "doseThresholdSettings"}),
 				new ViewMenuItem({title: "Звук", icon: "sound", view: "soundSettings"}),
 				new ViewMenuItem({title: "Экран", icon: "screen"}),
 				new ViewMenuItem({title: "Питание", icon: "battery", view: "batterySettings"}),
@@ -167,7 +167,7 @@ require([
 			items: [
 				new RadioMenuItem({
 					title: "0,3 uSv/h",
-					value: DeviceSettings.get("backgroundThreshold") == 0.3,
+					value: DeviceSettings.get("backgroundThreshold") == 300,
 					action: function() {
 						DeviceSettings.set("backgroundThreshold", 300);
 					},
@@ -180,7 +180,7 @@ require([
 				}),
 				new RadioMenuItem({
 					title: "0,4 uSv/h",
-					value: DeviceSettings.get("backgroundThreshold") == 0.4,
+					value: DeviceSettings.get("backgroundThreshold") == 400,
 					action: function() {
 						DeviceSettings.set("backgroundThreshold", 400);
 					},
@@ -193,7 +193,7 @@ require([
 				}),
 				new RadioMenuItem({
 					title: "0,5 uSv/h",
-					value: DeviceSettings.get("backgroundThreshold") == 0.5,
+					value: DeviceSettings.get("backgroundThreshold") == 500,
 					action: function() {
 						DeviceSettings.set("backgroundThreshold", 500);
 					},
@@ -204,9 +204,379 @@ require([
 						}, this));
 					},
 				}),
+				new RadioMenuItem({
+					title: "0,6 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 600,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 600);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 600;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,7 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 700,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 700);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 700;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,8 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 800,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 800);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 800;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,9 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 900,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 900);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 900;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "1,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 1000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 1000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 1000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "1,2 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 1200,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 1200);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 1200;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "1,5 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 1500,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 1500);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 1500;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "2,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 2000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 2000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 2000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "5,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 5000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 5000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 5000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "10,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 10000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 10000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 10000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "30,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 30000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 30000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 30000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "60,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 60000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 60000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 60000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "100,0 uSv/h",
+					value: DeviceSettings.get("backgroundThreshold") == 100000,
+					action: function() {
+						DeviceSettings.set("backgroundThreshold", 100000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:backgroundThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("backgroundThreshold") == 100000;
+							this.render();							
+						}, this));
+					},
+				}),
 				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
 			]
-		})
+		});
+
+		var DoseThresholdMenu = new SettingsScreen({
+			items: [
+				new RadioMenuItem({
+					title: "0,01 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 10000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 10000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 10000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,05 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 50000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 50000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 50000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,1 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 100000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 100000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 100000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,5 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 50000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 50000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 50000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "1,0 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 1000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 1000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 1000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "5,0 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 5000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 5000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 5000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "10,0 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 10000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 10000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 10000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "50,0 mSv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 50000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 50000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 50000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,1 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 100000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 100000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 100000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "0,5 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 500000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 500000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 500000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "1,0 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 1000000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 1000000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 1000000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "5,0 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 5000000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 5000000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 5000000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "10,0 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 10000000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 10000000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 10000000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "50,0 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 50000000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 50000000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 50000000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new RadioMenuItem({
+					title: "100,0 Sv/h",
+					value: DeviceSettings.get("cumulativeThreshold") == 100000000000,
+					action: function() {
+						DeviceSettings.set("cumulativeThreshold", 100000000000);
+					},
+					afterInit: function() {
+						DeviceSettings.bind('change:cumulativeThreshold', _.bind(function() {
+							this.value = DeviceSettings.get("cumulativeThreshold") == 100000000000;
+							this.render();							
+						}, this));
+					},
+				}),
+				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
+			]
+		});
 
 		Device.addScreen("measurement", new MeasurementScreen);
 		Device.addScreen("cumulativeDose", new CumulativeDoseScreen);
@@ -216,6 +586,7 @@ require([
 		Device.addScreen("settings", SettingsMenu);
 		Device.addScreen("langSettings", LanguageSettingsMenu);
 		Device.addScreen("bgThresholdSettings", BackgroundThresholdMenu);
+		Device.addScreen("doseThresholdSettings", DoseThresholdMenu);
 		Device.addScreen("soundSettings", SoundSettingsMenu);
 		Device.addScreen("batterySettings", BatterySettingsMenu);
 		Device.addScreen("splash", new SplashScreen);
