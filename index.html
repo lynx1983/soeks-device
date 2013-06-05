@@ -98,9 +98,7 @@
 			<span class="title"><%=item.title%></span>
  		</script>
  		<script type="text/template" id="radio-menu-item-template">
- 				<% if(item.options.icon) { %>
- 					<span class="icon <%=item.options.icon%>"></span>
-				<% } %>
+				<span class="icon <%=(item.options.icon ? item.options.icon : '' )%>"></span>
 				<span class="title"><%=item.title%></span>
 				<span class="radio<%= item.value ? ' checked' : ''%>">&nbsp;</span>
  		</script>
