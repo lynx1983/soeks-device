@@ -13,16 +13,12 @@ define(["view/Screen-view"], function(ScreenView) {
 		},
 		render: function() {
 			this.$el.html(this.template());
-			var prevItem = $(this.getPrevItem().render().$el);
-			var currentItem = $(this.items[this.activeItemIndex].render().$el);
-			var nextItem = $(this.getNextItem().render().$el);
-			this.$el.find('.main-menu').html('');
-			this.$el.find('.main-menu').append(
-				prevItem,
-				currentItem,
-				nextItem
+			this.$el.find(".main-menu").append(
+				this.getPrevItem().render().$el,
+				this.items[this.activeItemIndex].render().$el,
+				this.getNextItem().render().$el
 			);
-			this.$el.scrollTop(128);
+			this.$el.scrollTop(this.items[this.activeItemIndex].$el.position().top);
 			this.eventBus.trigger("device.panel.leftButton", "up");
 			this.eventBus.trigger("device.panel.middleButton", "ok");
 			this.eventBus.trigger("device.panel.rightButton", "down");
@@ -42,9 +38,10 @@ define(["view/Screen-view"], function(ScreenView) {
 		},
 		onLeftButton: function() {
 			if(this.isAnimationStarted()) return;
+			var prevItem = this.getPrevItem();
 			this.activeItemIndex--;
 			if(this.activeItemIndex < 0) this.activeItemIndex = this.items.length - 1;
-			this.scrollToPosition(0, 500);
+			this.scrollToPosition(prevItem.$el.position().top, 500);
 		},
 		onMiddleButton: function() {
 			var item = this.items[this.activeItemIndex];
@@ -52,27 +49,43 @@ define(["view/Screen-view"], function(ScreenView) {
 		},
 		onRightButton: function() {
 			if(this.isAnimationStarted()) return;
+			var nextItem = this.getNextItem();
 			this.activeItemIndex++;
 			if(this.activeItemIndex > this.items.length - 1) this.activeItemIndex = 0;
-			this.scrollToPosition(256, 500);
+			this.scrollToPosition(nextItem.$el.position().top, 500);
 		},
 		startAnimation: function() {
 			this.animation = true;
 		},
 		stopAnimation: function() {
-			this.render();
 			this.animation = false;
 		},
 		isAnimationStarted: function() {
 			return this.animation;
 		},
-		getActiveItemPosition: function() {
-			return this.$el.scrollTop() + this.items[this.activeItemIndex].$el.position().top;
-		},
 		scrollToPosition: function(position, speed) {
 			var speed = speed || 0;
 			this.startAnimation();
-			this.$el.stop().animate({'scrollTop': position}, speed, _.bind(this.stopAnimation, this));
+			this.$el.stop().animate({'scrollTop': this.$el.scrollTop() + position}, speed, _.bind(
+				function() {
+					this.stopAnimation();
+					this.updateMenu(position);
+				},
+			this));
+		},
+		updateMenu: function(position) {
+			if(position > 0) {
+				this.$el.find(".main-menu").children().first().remove();
+				this.$el.find(".main-menu").append(
+					this.getNextItem().render().$el
+				)
+			} else {
+				this.$el.find(".main-menu").children().last().remove();
+				this.$el.find(".main-menu").prepend(
+					this.getPrevItem().render().$el
+				)
+			}
+			this.$el.scrollTop(this.$el.scrollTop() + this.items[this.activeItemIndex].$el.position().top);			
 		}
 	});
 	return MenuScreen;
