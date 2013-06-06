@@ -26,22 +26,17 @@
 }
 
 #top-panel {
-	position: absolute;
-	top: 0;
 }
 
 #bottom-panel {
-	position: absolute;
-	bottom: 0;
 }
 
 #main-view {
 	height: 128px;
 	width: 128px;
-	position: absolute;
-	top: 16px;
-	left: 0;
+	position: relative;
 	overflow: hidden;
+	margin: 0;
 }
 
 .fullscreen #main-view {
@@ -58,6 +53,7 @@ div.view {
 	color: #FFFFFF;
 	height: 100%;
 	width: 100%;
+	overflow: hidden;
 }
 
 div.view.measurement {
@@ -160,7 +156,7 @@ div.panel {
 	height: 16px;
 	background: url('../img/panel-bg.png') repeat-x;
 	width: 100%;
-	left: 0;
+	position: relative;
 }
 
 ul.main-menu {

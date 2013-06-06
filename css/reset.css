@@ -52,7 +52,6 @@ table {
 }
  
 .clearfix {
-	display: inline-block;
 }
  
 html[xmlns] .clearfix {

@@ -18,7 +18,7 @@ define(["view/Screen-view"], function(ScreenView) {
 				this.items[this.activeItemIndex].render().$el,
 				this.getNextItem().render().$el
 			);
-			this.$el.scrollTop(this.items[this.activeItemIndex].$el.position().top);
+			this.$el.find('.view').scrollTop(this.items[this.activeItemIndex].$el.position().top);
 			this.eventBus.trigger("device.panel.leftButton", "up");
 			this.eventBus.trigger("device.panel.middleButton", "ok");
 			this.eventBus.trigger("device.panel.rightButton", "down");
@@ -66,7 +66,7 @@ define(["view/Screen-view"], function(ScreenView) {
 		scrollToPosition: function(position, speed) {
 			var speed = speed || 0;
 			this.startAnimation();
-			this.$el.stop().animate({'scrollTop': this.$el.scrollTop() + position}, speed, _.bind(
+			this.$el.find('.view').stop().animate({'scrollTop': this.$el.find('.view').scrollTop() + position}, speed, _.bind(
 				function() {
 					this.stopAnimation();
 					this.updateMenu(position);
@@ -85,7 +85,7 @@ define(["view/Screen-view"], function(ScreenView) {
 					this.getPrevItem().render().$el
 				)
 			}
-			this.$el.scrollTop(this.$el.scrollTop() + this.items[this.activeItemIndex].$el.position().top);			
+			this.$el.find('.view').scrollTop(this.$el.find('.view').scrollTop() + this.items[this.activeItemIndex].$el.position().top);			
 		}
 	});
 	return MenuScreen;
