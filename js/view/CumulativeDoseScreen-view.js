@@ -37,7 +37,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				marks.push({
 					value: normalizedValue,
 					tag: MeasurementsCollection.getTag(item.getValue()),
-					level: item.get('level'),
+					readiness: item.get('readiness'),
 				});
 				sumValue += item.getValue();
 			}, this);

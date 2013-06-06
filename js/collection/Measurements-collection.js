@@ -46,7 +46,7 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 				level.right = probability;
 			})
 
-			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 1000);
+			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 600);
 
 			this.cumulativeDose = 0;
 
@@ -73,8 +73,8 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 		},
 		doMeasure: function() {
 			var lastMeasure = this.last();
-			if(lastMeasure && lastMeasure.get("level") < 2) {
-				lastMeasure.set("level" , lastMeasure.get("level") + 1);
+			if(lastMeasure && lastMeasure.get("readiness") < 100) {
+				lastMeasure.set("readiness" , lastMeasure.get("readiness") + 20);
 			} else {
 				this.newMeasure();
 			}

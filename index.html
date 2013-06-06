@@ -50,7 +50,7 @@
  					<div class="bg-threshold"><%=backgroundThreshold%></div>
  					<ul class="activity-indicator left clearfix">
 		 				<% _.each(marks, function(mark) { %>
-		 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+		 					<li style="width: <%=Math.round(3 * mark.readiness / 100)%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
 		 				<% }); %>
  					</ul>
  					<div class="last-value <%=tag%>"><span class="value"><%=lastValue%><span><span class="units"><%=lastValueUnit%></div>
@@ -66,12 +66,12 @@
     		<div class="bg-threshold"><%=backgroundThreshold%></div> 
     		<ul class="activity-indicator left clearfix">
 	 				<% _.each(leftMarks, function(mark) { %>
-	 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+	 					<li style="width: <%=Math.round(3 * mark.readiness / 100)%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
 	 				<% }); %>
  				</ul>
  				<ul class="activity-indicator right clearfix">
 	 				<% _.each(rightMarks, function(mark) { %>
-	 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
+	 					<li style="width: <%=Math.round(3 * mark.readiness / 100)%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px"></span></li>
 	 				<% }); %>
 	 			</ul>
   	  </div>
@@ -137,7 +137,7 @@
  		<script type="text/template" id="activitygraph-template">
  			<ul class="activity-indicator clearfix">
  				<% _.each(marks, function(mark) { %>
- 					<li style="width: <%=mark.level+1%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px;"></span></li>
+ 					<li style="width: <%=Math.round(3 * mark.readiness / 100)%>px;"><span class="<%=mark.tag%>" style="height: <%=mark.value%>px;"></span></li>
  				<% }); %>
  			</ul>
  		</script>

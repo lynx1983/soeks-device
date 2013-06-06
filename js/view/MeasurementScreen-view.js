@@ -12,20 +12,14 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 			MeasurementsCollection.on("add change", _.bind(this.updateScreen, this));
 			this.options = _.extend(this.defaults, this.options);
 			this.accuracy = 0;
-			this.readiness = 0;
+			this.prevValue = null;
 		},
 		reinitialize: function() {
 			this.accuracy = 0;
-			this.readiness = 0;
+			this.prevValue = null;
 		},
 		updateScreen: function() {
 			if(this.active) {
-				this.readiness += 20;
-				if(this.readiness > 100) {
-					this.readiness = 0;
-					this.accuracy += 20;
-				}
-				this.accuracy = this.accuracy > 100 ? 100 : this.accuracy;
 				this.render();
 				this.eventBus.trigger("device.beep");
 			}
@@ -37,24 +31,30 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 			var lastValue = lastItem.getValue();
 			var lastLeftValue = lastItem.get("leftValue");
 			var lastRightValue = lastItem.get("rightValue");
+			var lastReadiness = lastItem.get("readiness");
+
 			var values = MeasurementsCollection.last(this.options.length).reverse();
 			var leftMax = _.max(values, function(item) {return item.get("leftValue")}).get("leftValue");
 			var rightMax = _.max(values, function(item) {return item.get("rightValue")}).get("rightValue");
 
 			var sum = 0;
 
+			this.accuracy = lastReadiness == 100 ? this.accuracy + 20 : this.accuracy;
+
+			this.accuracy = this.accuracy > 100 ? 0 : this.accuracy;
+
 			_.each(values, function(item) {
 				var normalizedValue = Math.round(this.options.max * (item.get("leftValue") / leftMax))
 				normalizedValue = normalizedValue < this.options.min ? this.options.min : normalizedValue;
 				leftMarks.push({
 					value: normalizedValue,
-					level: item.get('level'),
+					readiness: item.get('readiness'),
 				});
 				normalizedValue = Math.round(this.options.max * (item.get("rightValue") / rightMax))
 				normalizedValue = normalizedValue < this.options.min ? this.options.min : normalizedValue;
 				rightMarks.push({
 					value: normalizedValue,
-					level: item.get('level'),
+					readiness: item.get('readiness'),
 				});
 				sum += item.getValue();
 			}, this);
@@ -68,16 +68,21 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 			}
 
 			this.$el.html(this.template({
-				lastValue: MeasurementsCollection.formatValue(avgValue),
+				lastValue: lastReadiness == 100 ? MeasurementsCollection.formatValue(avgValue) : (this.prevValue ? MeasurementsCollection.formatValue(this.prevValue ) : ''),
 				leftMarks: leftMarks,
 				rightMarks: rightMarks,
-				unit: MeasurementsCollection.getUnit(avgValue),
-				readiness: 41 * this.readiness / 100,
+				unit: lastReadiness == 100 ? MeasurementsCollection.getUnit(avgValue) : (this.prevValue ? MeasurementsCollection.getUnit(this.prevValue ) : ''),
+				readiness: 41 * lastReadiness / 100,
 				accuracy: 41 * this.accuracy / 100,
 				message: this.getScreenMessage(tag),
 				tag: tag,
 				backgroundThreshold: MeasurementsCollection.formatValue(DeviceSettings.get("backgroundThreshold"))
 			}));
+
+			if(lastReadiness == 100) {
+				this.prevValue = avgValue;
+			}
+
 			if(lastItem.get("level") == 0) {
 				switch(MeasurementsCollection.getTag(lastLeftValue)) {
 					case 'warning': 

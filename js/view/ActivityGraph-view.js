@@ -23,7 +23,7 @@ define(["backbone", "collection/Measurements-collection"], function(Bakcbone, Me
 				marks.push({
 					value: normalizedValue,
 					tag: MeasurementsCollection.getTag(value),
-					level: item.get('level'),
+					readiness: item.get('readiness'),
 				})
 			}, this)
 			this.$el.html(this.template({marks: marks}))

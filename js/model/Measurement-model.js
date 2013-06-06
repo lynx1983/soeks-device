@@ -6,7 +6,7 @@ define(["backbone"], function(Backbone) {
 			return {
 				leftValue: 0,
 				rightValue: 0,
-				level: 0,
+				readiness: 0,
 				timestamp: new Date().getTime(),
 			}
 		},
