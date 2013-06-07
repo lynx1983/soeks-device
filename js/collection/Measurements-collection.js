@@ -2,55 +2,70 @@ define(["backbone", "model/Measurement-model"], function(Backbone, MeasurementMo
 	var MeasurementsCollection
 	MeasurementsCollection = Backbone.Collection.extend({
 		model: MeasurementModel,
-		initialize: function() {
-			this.levels = [{
+		defaults: {
+			levels: [{
 					probability: .80,
 					minimum: 100,
 					maximum: 300,
 				},
 				{
-					probability: .10,
+					probability: .17,
 					minimum: 300,
 					maximum: 400,
 				},
 				{
-					probability: .07,
+					probability: .02,
 					minimum: 400,
 					maximum: 1200,
 				},
 				{
-					probability: .03,
+					probability: .01,
 					minimum: 1200,
-					maximum: 100000,
-				}];
+					maximum: 1300,
+				}
+			]
+		},
+		initialize: function() {
+			this.levels = this.defaults.levels;
 
 			this.tags = [{
-				level: 400,
-				tag: 'normal',
-			},
-			{
-				level: 1200,
-				tag: 'warning',
-			},
-			{
-				level: 100000,
-				tag: 'danger',
-			}];
+					level: 400,
+					tag: 'normal',
+				},
+				{
+					level: 1200,
+					tag: 'warning',
+				},
+				{
+					level: 100000,
+					tag: 'danger',
+				}
+			];
 
 			this.difference = 10;
 
-			var probability = 0;
-			_.each(this.levels, function(level, key) {
-				level.left = probability == 0 ? 0 : probability + 1;
-				probability += level.probability * 100;
-				level.right = probability;
-			})
+			this._createRanges();
 
 			this.measurementInterval = setInterval(_.bind(this.doMeasure, this), 600);
 
 			this.cumulativeDose = 0;
 
 			this.startTimestamp = new Date().getTime();
+		},
+		reinitialize: function() {
+			this._createRanges();
+		},
+		setLevels:function(levels) {
+			this.levels = levels;
+			this._createRanges();
+		},
+		_createRanges: function() {
+			var probability = 0;
+			_.each(this.levels, function(level, key) {
+				level.left = probability == 0 ? 0 : probability + 1;
+				probability += level.probability * 100;
+				level.right = probability;
+			});
 		},
 		newMeasure: function() {
 			var range = _.random(0, 100);

@@ -25,7 +25,31 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		},
 		beep: function() {
 			if(this.active) {
-				this.eventBus.trigger("device.beep");
+
+				var lastItem = MeasurementsCollection.last();
+				var lastValue = lastItem.getValue();
+				var lastReadiness = lastItem.get("readiness");
+
+				var tag = MeasurementsCollection.getTag(lastValue);
+
+				switch(tag) {
+					case 'warning':
+						if(_.random(0, 100) > 70) { 
+							this.eventBus.trigger("device.beep");
+						}
+						break;
+					case 'danger':
+						if(_.random(0, 100) > 40) { 
+							this.eventBus.trigger("device.beep");
+						}
+						break;
+					default:
+						if(lastReadiness == 20 || lastReadiness == 60) {
+							if(_.random(0, 100) > 80) { 
+								this.eventBus.trigger("device.beep");
+							}
+						}
+				}
 			}
 		},
 		render: function() {

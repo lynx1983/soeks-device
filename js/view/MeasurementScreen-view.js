@@ -21,7 +21,6 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		updateScreen: function() {
 			if(this.active) {
 				this.render();
-				this.eventBus.trigger("device.beep");
 			}
 		},
 		render: function() {
@@ -83,31 +82,62 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				this.prevValue = avgValue;
 			}
 
-			if(lastItem.get("level") == 0) {
-				switch(MeasurementsCollection.getTag(lastLeftValue)) {
-					case 'warning': 
+			leftTag = MeasurementsCollection.getTag(lastLeftValue);
+
+			switch(leftTag) {
+				case 'warning':
+					if(_.random(0, 100) > 70) { 
 						this.eventBus.trigger("device.panel.leftButton", "spot-warning");
-						break;
-					case 'danger':
+						this.eventBus.trigger("device.beep");
+					} else {
+						this.eventBus.trigger("device.panel.leftButton", "spot");	
+					}
+					break;
+				case 'danger':
+					if(_.random(0, 100) > 40) { 
 						this.eventBus.trigger("device.panel.leftButton", "spot-danger");
-						break;
-					default:
-						this.eventBus.trigger("device.panel.leftButton", "spot");
-				}
-				switch(MeasurementsCollection.getTag(lastRightValue)) {
-					case 'warning': 
-						this.eventBus.trigger("device.panel.rightButton", "spot-warning");
-						break;
-					case 'danger':
-						this.eventBus.trigger("device.panel.rightButton", "spot-danger");
-						break;
-					default:
-						this.eventBus.trigger("device.panel.rightButton", "spot");
-				}
-			} else {
-				this.eventBus.trigger("device.panel.leftButton", "spot");
-				this.eventBus.trigger("device.panel.rightButton", "spot");
+						this.eventBus.trigger("device.beep");
+					} else {
+						this.eventBus.trigger("device.panel.leftButton", "spot");	
+					}
+					break;
+				default:
+					if(lastReadiness == 20 || lastReadiness == 60) {
+						if(_.random(0, 100) > 80) { 
+							this.eventBus.trigger("device.beep");
+						}
+					}
+					this.eventBus.trigger("device.panel.leftButton", "spot");
 			}
+
+			rightTag = MeasurementsCollection.getTag(lastRightValue);
+
+			switch(rightTag) {
+				case 'warning':
+					if(_.random(0, 100) > 70) { 
+						this.eventBus.trigger("device.panel.rightButton", "spot-warning");
+						this.eventBus.trigger("device.beep");
+					} else {
+						this.eventBus.trigger("device.panel.rightButton", "spot");	
+					}
+					break;
+				case 'danger':
+					if(_.random(0, 100) > 40) { 
+						this.eventBus.trigger("device.panel.rightButton", "spot-danger");
+						this.eventBus.trigger("device.beep");
+					} else {
+						this.eventBus.trigger("device.panel.rightButton", "spot");	
+					}
+					break;
+				default:
+					if(lastReadiness == 40 || lastReadiness == 80) {
+						if(_.random(0, 100) > 80) { 
+							this.eventBus.trigger("device.beep");
+						}
+					}
+					this.eventBus.trigger("device.panel.rightButton", "spot");
+			}
+
 			this.eventBus.trigger("device.panel.middleButton", "menu");
 			return this;
 		},

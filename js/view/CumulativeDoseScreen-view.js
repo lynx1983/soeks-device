@@ -20,7 +20,6 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		updateScreen: function() {
 			if(this.active) {
 				this.render();
-				this.eventBus.trigger("device.beep");
 			}
 		},
 		render: function() {
@@ -30,6 +29,10 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 
 			var sumValue = 0;
 			var maxValue = _.max(values, function(item) {return item.getValue()}).getValue();
+
+			var lastItem = MeasurementsCollection.last();
+			var lastValue = lastItem.getValue();
+			var lastReadiness = lastItem.get("readiness");
 
 			_.each(values, function(item) {
 				var normalizedValue = Math.round(this.options.max * (item.getValue() / maxValue))
@@ -68,6 +71,26 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				backgroundThreshold: MeasurementsCollection.formatValue(DeviceSettings.get("backgroundThreshold")),
 				tag: tag,
 			}));
+
+			switch(tag) {
+				case 'warning':
+					if(_.random(0, 100) > 70) { 
+						this.eventBus.trigger("device.beep");
+					}
+					break;
+				case 'danger':
+					if(_.random(0, 100) > 40) { 
+						this.eventBus.trigger("device.beep");
+					}
+					break;
+				default:
+					if(lastReadiness == 20 || lastReadiness == 60) {
+						if(_.random(0, 100) > 80) { 
+							this.eventBus.trigger("device.beep");
+						}
+					}
+			}
+
 			return this;
 		},
 		onMiddleButton: function() {

@@ -13,8 +13,9 @@ require([
 		"view/ViewMenuItem-view",
 		"view/RadioMenuItem-view",
 		"view/CheckboxMenuItem-view",
+		"view/Environment-view"
 	],
-	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, HistoryScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem, CheckboxMenuItem) {
+	function(_, DeviceSettings, Device, MenuScreen, SettingsScreen, AboutScreen, MeasurementScreen, CumulativeDoseScreen, HistoryScreen, SplashScreen, MainMenuItem, ViewMenuItem, RadioMenuItem, CheckboxMenuItem, Environment) {
 		var MainMenu = new MenuScreen({
 			items: [
 				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png", view: "measurement"}),
