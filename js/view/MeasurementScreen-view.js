@@ -58,7 +58,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				sum += item.getValue();
 			}, this);
 
-			var avgValue = sum / values.length;
+			var avgValue = lastValue; //sum / values.length;
 
 			var tag = MeasurementsCollection.getTag(avgValue);
 

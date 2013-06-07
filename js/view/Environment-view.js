@@ -52,25 +52,15 @@ define([
 					'dangerous': {
 						name: 'Dangerous',
 						levels: [{
-								probability: .80,
+								probability: .90,
 								minimum: 1200,
-								maximum: 2000,
-							},
-							{
-								probability: .10,
-								minimum: 2000,
-								maximum: 5000,
+								maximum: 3000,
 							},
 							{
 								probability: .07,
-								minimum: 5000,
-								maximum: 10000,
+								minimum: 3000,
+								maximum: 5000,
 							},
-							{
-								probability: .03,
-								minimum: 10000,
-								maximum: 100000,
-							}
 						]
 					},
 				}
