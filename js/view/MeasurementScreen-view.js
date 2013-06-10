@@ -58,19 +58,21 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				sum += item.getValue();
 			}, this);
 
-			var avgValue = lastValue; //sum / values.length;
+			//var avgValue = lastValue; //sum / values.length;
 
-			var tag = MeasurementsCollection.getTag(avgValue);
+			var avgValue = lastReadiness == 100 ? lastValue : this.prevValue;
+
+			var tag = MeasurementsCollection.getTag(avgValue || lastValue);
 
 			if(tag == 'normal' && avgValue > DeviceSettings.get("backgroundThreshold")) {
 				tag = 'warning';
 			}
 
 			this.$el.html(this.template({
-				lastValue: lastReadiness == 100 ? MeasurementsCollection.formatValue(avgValue) : (this.prevValue ? MeasurementsCollection.formatValue(this.prevValue ) : ''),
+				lastValue: avgValue ? MeasurementsCollection.formatValue(avgValue) : '',
 				leftMarks: leftMarks,
 				rightMarks: rightMarks,
-				unit: lastReadiness == 100 ? MeasurementsCollection.getUnit(avgValue) : (this.prevValue ? MeasurementsCollection.getUnit(this.prevValue ) : ''),
+				unit: avgValue ? MeasurementsCollection.getUnit(avgValue) : '',
 				readiness: 41 * lastReadiness / 100,
 				accuracy: 41 * this.accuracy / 100,
 				message: this.getScreenMessage(tag),
