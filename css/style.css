@@ -733,3 +733,10 @@ span.icon.autooff-settings {
 	background-image: url('../img/settings-autooff-icon.png');
 }
 
+span.icon.datetime {
+	background-image: url('../img/datetime-icon.png');
+}
+
+span.icon.alarm {
+	background-image: url('../img/alarm-icon.png');
+}

@@ -23,7 +23,7 @@ require([
 				new MainMenuItem({title: "История", iconPath: "img/menu-3.png", view: "history"}),
 				new MainMenuItem({title: "Информация", iconPath: "img/menu-4.png"}),
 				new MainMenuItem({title: "Настройки", iconPath: "img/menu-5.png", view: "settings"}),
-				new MainMenuItem({title: "Время", iconPath: "img/menu-6.png"}),
+				new MainMenuItem({title: "Время", iconPath: "img/menu-6.png", view: "datetime"}),
 				new MainMenuItem({title: "Проводник", iconPath: "img/menu-7.png"}),
 				new MainMenuItem({title: "О программе", iconPath: "img/menu-8.png", view: "about"})
 			]
@@ -46,6 +46,14 @@ require([
 						DeviceSettings.set("bluetooth", this.value);
 					}
 				}),
+				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
+			]
+		});
+
+		var DateTimeMenu = new SettingsScreen({
+			items: [
+				new ViewMenuItem({title: "Дата/Время", icon: "datetime"}),
+				new ViewMenuItem({title: "Будильник", icon: "alarm"}),
 				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
 			]
 		});
@@ -591,6 +599,7 @@ require([
 		Device.addScreen("soundSettings", SoundSettingsMenu);
 		Device.addScreen("batterySettings", BatterySettingsMenu);
 		Device.addScreen("splash", new SplashScreen);
+		Device.addScreen("datetime", DateTimeMenu);
 
 		Device.setCurrentScreen("splash");
 	}
