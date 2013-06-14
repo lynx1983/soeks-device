@@ -21,10 +21,10 @@ require([
 				new MainMenuItem({title: "Измерение", iconPath: "img/menu-1.png", view: "measurement"}),
 				new MainMenuItem({title: "Накоп. доза", iconPath: "img/menu-2.png", view: "cumulativeDose"}),
 				new MainMenuItem({title: "История", iconPath: "img/menu-3.png", view: "history"}),
-				new MainMenuItem({title: "Информация", iconPath: "img/menu-4.png"}),
+				new MainMenuItem({title: "Информация", iconPath: "img/menu-4.png", view: "about"}),
 				new MainMenuItem({title: "Настройки", iconPath: "img/menu-5.png", view: "settings"}),
 				new MainMenuItem({title: "Время", iconPath: "img/menu-6.png", view: "datetime"}),
-				new MainMenuItem({title: "Проводник", iconPath: "img/menu-7.png"}),
+				new MainMenuItem({title: "Проводник", iconPath: "img/menu-7.png", view: "explorer"}),
 				new MainMenuItem({title: "О программе", iconPath: "img/menu-8.png", view: "about"})
 			]
 		});
@@ -587,6 +587,48 @@ require([
 			]
 		});
 
+		var ExplorerSettingsMenu = new SettingsScreen({
+			items: [
+				new ViewMenuItem({
+					title: "Каталог",
+					icon: "folder",
+				}),
+				new CheckboxMenuItem({
+					title: "Исполняемые",
+					icon: "exe",
+					value: true,
+					action: function() {
+						this.value = !this.value
+					},
+				}),
+				new CheckboxMenuItem({
+					title: "Текстовые",
+					icon: "txt",
+					value: true,
+					action: function() {
+						this.value = !this.value
+					},
+				}),
+				new CheckboxMenuItem({
+					title: "Графические",
+					icon: "image",
+					value: true,
+					action: function() {
+						this.value = !this.value
+					},
+				}),
+				new CheckboxMenuItem({
+					title: "Системные",
+					icon: "sys",
+					value: true,
+					action: function() {
+						this.value = !this.value
+					},
+				}),
+				new ViewMenuItem({title: "Выход", icon: "exit", view: "__prevScreen__"}),
+			]
+		});
+
 		Device.addScreen("measurement", new MeasurementScreen);
 		Device.addScreen("cumulativeDose", new CumulativeDoseScreen);
 		Device.addScreen("history", new HistoryScreen);
@@ -600,6 +642,7 @@ require([
 		Device.addScreen("batterySettings", BatterySettingsMenu);
 		Device.addScreen("splash", new SplashScreen);
 		Device.addScreen("datetime", DateTimeMenu);
+		Device.addScreen("explorer", ExplorerSettingsMenu);
 
 		Device.setCurrentScreen("splash");
 	}

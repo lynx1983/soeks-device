@@ -114,6 +114,8 @@ ul.menu span.icon {
 	display: inline-block;
 	background-position: 0 0;
 	background-repeat: no-repeat;
+	position: relative;
+	top: -1px;
 }
 
 ul.menu li.active {
@@ -124,6 +126,7 @@ ul.menu li.active {
 ul.menu li span.title {
 	display: inline-block;
 	vertical-align: middle;
+	font-size: 13px;
 	line-height: 14px;
 }
 
@@ -746,4 +749,24 @@ span.icon.datetime {
 
 span.icon.alarm {
 	background-image: url('../img/alarm-icon.png');
+}
+
+span.icon.folder {
+	background-image: url('../img/folder-icon.png');
+}
+
+span.icon.exe {
+	background-image: url('../img/exe-icon.png');
+}
+
+span.icon.image {
+	background-image: url('../img/image-icon.png');
+}
+
+span.icon.txt {
+	background-image: url('../img/txt-icon.png');
+}
+
+span.icon.sys {
+	background-image: url('../img/sys-icon.png');
 }
