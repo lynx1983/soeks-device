@@ -77,6 +77,13 @@ ul.main-menu {
 
 }
 
+div.about.view {
+	text-align: center;
+	font-size: 11px;
+	line-height: 17px;
+	color: #05ff00;
+}
+
 ul.main-menu li {
 	display: block;
 	width: 128px;
