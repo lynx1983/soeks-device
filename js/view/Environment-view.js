@@ -6,13 +6,17 @@ define([
 		EnvironmentView = Backbone.View.extend({
 			el: $('#environment'),
 			events: {
-				"change .selector": "change"
+				"click .selector a": "change",
+				"click .close": "close",
+				"click .open": "open"
 			},
 			initialize: function() {
-				this.selector = this.$el.find('.selector');
+				this.$selector = this.$el.find('.selector');
+				this.$dialog = this.$el.find('.dialog');
 				this.environments = {
 					'normal': {
 						name: 'Normal',
+						caption: 'Фрукты',
 						levels: [{
 								probability: .80,
 								minimum: 100,
@@ -37,6 +41,7 @@ define([
 					},
 					'increased': {
 						name: 'Increased',
+						caption: 'Строительные материалы',
 						levels: [{
 								probability: .97,
 								minimum: 400,
@@ -51,6 +56,7 @@ define([
 					},
 					'dangerous': {
 						name: 'Dangerous',
+						caption: 'Детские игрушки',
 						levels: [{
 								probability: .90,
 								minimum: 1200,
@@ -68,16 +74,32 @@ define([
 			},
 			render: function() {
 				_.each(this.environments, function(item, key) {
-					this.selector.append(
-						$('<option>')
-							.attr('value', key)
-							.text(item.name)
+					this.$selector.append(
+						$('<li>')
+							.addClass(key)
+							.html(
+								$('<a>')
+									.attr('href', '#')
+									.attr('data-value', key)
+									.text(item.caption)
+							)
 					)
 				}, this);
 				return this;
 			},
-			change: function() {
-				MeasurementsCollection.setLevels(this.environments[this.selector.val()].levels);
+			change: function(event) {
+				MeasurementsCollection.setLevels(this.environments[$(event.target).data('value')].levels);
+				this.$el.attr('class', $(event.target).data('value'));
+				this.close();
+				return false;
+			},
+			close: function() {
+				this.$dialog.hide();
+				return false;
+			},
+			open: function() {
+				this.$dialog.show();
+				return false;
 			}
 		});
 

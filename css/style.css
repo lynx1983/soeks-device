@@ -1,12 +1,11 @@
-#device {
+.main-wrapper {
 	font-family: Arial;
+}
+
+#device {
 	width: 236px;
 	height: 566px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-left: -118px;
-	margin-top: -283px;
+	position: relative;
 	background: transparent url('../img/device.png') no-repeat;
 	-webkit-touch-callout: none;
 	-webkit-user-select: none;
@@ -14,6 +13,7 @@
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+	z-index: 0;
 }
 
 #device-screen {
@@ -22,7 +22,7 @@
 	background: #000;
 	margin: 0 auto;
 	position: relative;
-	margin-top: 120px;
+	top: 120px;
 }
 
 #top-panel {
@@ -769,4 +769,95 @@ span.icon.txt {
 
 span.icon.sys {
 	background-image: url('../img/sys-icon.png');
+}
+
+#environment {
+	width: 236px;
+	text-align: center;	
+	padding-left: 150px;
+	background-repeat: no-repeat;
+	background-position: left center;
+}
+
+#environment a.open {
+	color: black;
+	text-decoration: none;
+	display: block;
+	padding: 5px 0;
+}
+
+#environment .dialog {
+	display: block;
+	position: absolute;
+	top: 10px;
+	left: 170px;
+	width: 230px;
+	background: rgba(0,0,0,.7);
+	font-family: Arial;
+	padding-top: 26px;
+	display: none;
+	z-index: 5;
+}
+
+#environment .dialog .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	background: url('../img/close.png') no-repeat;
+	width: 19px;
+	height: 19px;
+	cursor: pointer;
+}
+
+#environment h2 {
+	text-align: center;
+	color: #FFFFFF;
+	padding: 15px 0;
+}
+
+#environment ul.selector {
+}
+
+#environment ul.selector li {
+	height: 70px;
+	border-bottom: 1px solid #9e9e9e;
+	text-align: center;
+	padding-left: 70px;
+	background-repeat: no-repeat;
+	background-position: 5px center;
+}
+
+#environment ul.selector li.normal {
+	background-image: url('../img/env-normal-icon.png');
+}
+
+#environment ul.selector li.increased {
+	background-image: url('../img/env-warning-icon.png');
+}
+
+#environment ul.selector li.dangerous {
+	background-image: url('../img/env-danger-icon.png');
+}
+
+#environment.normal {
+	background-image: url('../img/env-normal-bg.png');
+}
+
+#environment.increased {
+	background-image: url('../img/env-warning-bg.png');
+}
+
+#environment.dangerous {
+	background-image: url('../img/env-danger-bg.png');
+}
+
+#environment ul.selector li a {
+	text-decoration: none;
+	color: #FFFFFF;
+	display: inline-block;
+	margin-top: 20px;
+}
+
+#environment ul.selector li a:hover {
+	color: #1fd50d;
 }
