@@ -99,6 +99,7 @@ ul.menu li {
 	height: 16px;
 	line-height: 16px;
 	display: list-item;
+	text-align: left;
 }
 
 ul.menu li img.icon {
