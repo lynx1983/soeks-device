@@ -13,6 +13,7 @@ define([
 			initialize: function() {
 				this.$selector = this.$el.find('.selector');
 				this.$dialog = this.$el.find('.dialog');
+				this.$link = this.$el.find('.open');
 				this.environments = {
 					'normal': {
 						name: 'Normal',
@@ -94,10 +95,12 @@ define([
 				return false;
 			},
 			close: function() {
+				this.$link.show();
 				this.$dialog.hide();
 				return false;
 			},
 			open: function() {
+				this.$link.hide();
 				this.$dialog.show();
 				return false;
 			}
