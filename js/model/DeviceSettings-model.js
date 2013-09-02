@@ -5,7 +5,7 @@ define(["backbone"], function(Backbone) {
 		defaults: function() {
 			return {
 				bluetooth: false,
-				language: "ru",
+				language: "en",
 				backgroundThreshold: 300,	
 				cumulativeThreshold: 10000,
 				dangerThreshold: 1400,

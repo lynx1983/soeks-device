@@ -110,7 +110,7 @@
 			<% if(item.options.icon) { %>
 				<span class="icon <%=item.options.icon%>"></span>
 			<% } %>
-			<span class="title"><%=item.title%></span>
+			<span class="title"><%=t(item.title)%></span>
  		</script>
  		<script type="text/template" id="radio-menu-item-template">
 				<span class="icon <%=(item.options.icon ? item.options.icon : '' )%>"></span>
@@ -137,12 +137,12 @@
 			<% if(item.img) { %>
 				<img class="icon" src="<%=item.img.src%>"/>
 			<% } %>
-			<span><%=item.title%></span>
+			<span><%=t(item.title)%></span>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
- 			<div class="button left <%=buttons.left%>"></div>
- 			<div class="button middle <%=buttons.middle%>"></div>
- 			<div class="button right <%=buttons.right%>"></div>
+ 			<div class="button left <%=lang%> <%=buttons.left%>"></div>
+ 			<div class="button middle <%=lang%> <%=buttons.middle%>"></div>
+ 			<div class="button right <%=lang%> <%=buttons.right%>"></div>
  		</script>
  		<script type="text/template" id="top-panel-template">
  			<div class="battery full"></div>

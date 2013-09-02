@@ -1,4 +1,4 @@
-define(["view/Panel-view"], function(PanelView) {	
+define(["view/Panel-view", "model/DeviceSettings-model"], function(PanelView, DeviceSettings) {	
 	var BottomPanelView;
 	BottomPanelView = PanelView.extend({
 		el: '#bottom-panel',
@@ -14,7 +14,10 @@ define(["view/Panel-view"], function(PanelView) {
 			this.eventBus.bind("device.panel.rightButton", _.bind(this.setRightButton, this));
 		},
 		render: function() {
-			this.$el.html(this.template({buttons: this.buttons}))
+			this.$el.html(this.template({
+				lang: DeviceSettings.get("language"),
+				buttons: this.buttons
+			}))
 			return this;
 		},
 		setLeftButton: function(className) {

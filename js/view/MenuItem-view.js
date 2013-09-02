@@ -1,4 +1,4 @@
-define(["view/EventDriven-view"], function(EventDrivenView) {	
+define(["view/EventDriven-view", "i18n/i18n"], function(EventDrivenView, i18n) {	
 	var MenuItem;
 	MenuItem = EventDrivenView.extend({
 		constructor: function(options) {
@@ -10,7 +10,10 @@ define(["view/EventDriven-view"], function(EventDrivenView) {
 			}
 		},
 		render: function() {
-			this.$el.html(this.template({item: this}));
+			this.$el.html(this.template({
+				t: i18n.t,
+				item: this
+			}));
 			return this;
 		},
 	});

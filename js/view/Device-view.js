@@ -20,6 +20,7 @@ define([
 				
 				this.eventBus.bind("device.screen.change", _.bind(this.onScreenChange, this));
 				this.eventBus.bind("device.screen.prev", _.bind(this.setPrevScreen, this));
+				this.eventBus.bind("device.screen.update", _.bind(this.render, this));
 				this.eventBus.bind("device.beep", _.bind(this.beep, this));
 			},
 			beep: function() {
@@ -28,9 +29,13 @@ define([
 				}
 			},
 			render: function() {
-				this.setFullScreen(this.getCurrentScreen().fullScreen);
+				if (this.getCurrentScreen()) {
+					this.setFullScreen(this.getCurrentScreen().fullScreen);
+				}
 				TopPanel.render();
-				this.getCurrentScreen().render();
+				if (this.getCurrentScreen()) {
+       				this.getCurrentScreen().render();
+      			}
 				BottomPanel.render();
 				return this;
 			},
