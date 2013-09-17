@@ -1,9 +1,10 @@
 define([
-	"backbone",
+	"view/EventDriven-view",
 	"collection/Measurements-collection",
-	], function(Backbone, MeasurementsCollection) {	
+	"i18n/i18n"
+	], function(EventDrivenView, MeasurementsCollection, i18n) {	
 		var EnvironmentView;
-		EnvironmentView = Backbone.View.extend({
+		EnvironmentView = EventDrivenView.extend({
 			el: $('#environment'),
 			events: {
 				"click .selector a": "change",
@@ -17,7 +18,7 @@ define([
 				this.environments = {
 					'normal': {
 						name: 'Normal',
-						caption: 'Фрукты',
+						caption: 'Fruits',
 						levels: [{
 								probability: .80,
 								minimum: 100,
@@ -42,7 +43,7 @@ define([
 					},
 					'increased': {
 						name: 'Increased',
-						caption: 'Строительные материалы',
+						caption: 'Building materials',
 						levels: [{
 								probability: .97,
 								minimum: 400,
@@ -57,7 +58,7 @@ define([
 					},
 					'dangerous': {
 						name: 'Dangerous',
-						caption: 'Детские игрушки',
+						caption: 'Toys',
 						levels: [{
 								probability: .90,
 								minimum: 1200,
@@ -71,9 +72,13 @@ define([
 						]
 					},
 				}
+				this.eventBus.bind("device.screen.update", _.bind(this.render, this))
 				this.render();
 			},
 			render: function() {
+				this.$el.find('a.open').text(i18n.t("Select the measured product"));
+				this.$el.find('h2').text(i18n.t("Select the measured product"));
+				this.$selector.empty();
 				_.each(this.environments, function(item, key) {
 					this.$selector.append(
 						$('<li>')
@@ -82,7 +87,7 @@ define([
 								$('<a>')
 									.attr('href', '#')
 									.attr('data-value', key)
-									.text(item.caption)
+									.text(i18n.t(item.caption))
 							)
 					)
 				}, this);

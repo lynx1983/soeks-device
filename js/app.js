@@ -22,23 +22,23 @@ require([
 			var MainMenu = new MenuScreen({
 				items: [
 					new MainMenuItem({title: "Measurement", iconPath: "img/menu-1.png", view: "measurement"}),
-					new MainMenuItem({title: "Накоп. доза", iconPath: "img/menu-2.png", view: "cumulativeDose"}),
+					new MainMenuItem({title: "Accumulated dose", iconPath: "img/menu-2.png", view: "cumulativeDose"}),
 					new MainMenuItem({title: "History", iconPath: "img/menu-3.png", view: "history"}),
 					new MainMenuItem({title: "Information", iconPath: "img/menu-4.png", view: "about"}),
 					new MainMenuItem({title: "Settings", iconPath: "img/menu-5.png", view: "settings"}),
-					new MainMenuItem({title: "Date/time", iconPath: "img/menu-6.png", view: "datetime"}),
-					new MainMenuItem({title: "Explorer", iconPath: "img/menu-7.png", view: "explorer"}),
-					new MainMenuItem({title: "About", iconPath: "img/menu-8.png", view: "about"})
+					new MainMenuItem({title: "Time/alarm clock", iconPath: "img/menu-6.png", view: "datetime"}),
+					new MainMenuItem({title: "Guide", iconPath: "img/menu-7.png", view: "explorer"}),
+					new MainMenuItem({title: "About the program", iconPath: "img/menu-8.png", view: "about"})
 				]
 			});
 
 			var SettingsMenu = new SettingsScreen({
 				items: [
 					new ViewMenuItem({title: "Language", icon: "lang", view: "langSettings"}),
-					new ViewMenuItem({title: "Порог фона", icon: "level", view: "bgThresholdSettings"}),
-					new ViewMenuItem({title: "Порог дозы", icon: "dose-level", view: "doseThresholdSettings"}),
+					new ViewMenuItem({title: "Radioactivity", icon: "level", view: "bgThresholdSettings"}),
+					new ViewMenuItem({title: "Radiation dose", icon: "dose-level", view: "doseThresholdSettings"}),
 					new ViewMenuItem({title: "Sound", icon: "sound", view: "soundSettings"}),
-					new ViewMenuItem({title: "Экран", icon: "screen"}),
+					new ViewMenuItem({title: "Screen", icon: "screen"}),
 					new ViewMenuItem({title: "Power", icon: "battery", view: "batterySettings"}),
 					new RadioMenuItem({
 						title: "Bluetooth", 
@@ -56,7 +56,7 @@ require([
 			var DateTimeMenu = new SettingsScreen({
 				items: [
 					new ViewMenuItem({title: "Date/Time", icon: "datetime"}),
-					new ViewMenuItem({title: "Будильник", icon: "alarm"}),
+					new ViewMenuItem({title: "Alarm clock", icon: "alarm"}),
 					new ViewMenuItem({title: "Exit", icon: "exit", view: "__prevScreen__"}),
 				]
 			});
@@ -140,7 +140,7 @@ require([
 						},
 					}),
 					new CheckboxMenuItem({
-						title: "Level",
+						title: "Threshold",
 						icon: "threshold-sound",
 						value: DeviceSettings.get("thresholdSoundEnabled"),
 						action: function() {
@@ -648,8 +648,7 @@ require([
 			Device.addScreen("explorer", ExplorerSettingsMenu);
 
 			DeviceSettings.set({
-				language:'en'
-      			//language: (navigator.language || navigator.userLanguage || 'en').substring(0, 2)
+      			language: (navigator.language || navigator.userLanguage || 'en').substring(0, 2)
     		});
 
 			Device.setCurrentScreen("splash");

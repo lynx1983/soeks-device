@@ -88,6 +88,7 @@ ul.main-menu li {
 	display: block;
 	width: 128px;
 	height: 128px;
+	letter-spacing: -1px;
 }
 
 ul.menu {
