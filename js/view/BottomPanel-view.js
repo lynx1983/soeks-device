@@ -1,4 +1,4 @@
-define(["view/Panel-view", "model/DeviceSettings-model"], function(PanelView, DeviceSettings) {	
+define(["view/Panel-view", "model/DeviceSettings-model", "i18n/i18n"], function(PanelView, DeviceSettings, i18n) {	
 	var BottomPanelView;
 	BottomPanelView = PanelView.extend({
 		el: '#bottom-panel',
@@ -16,7 +16,8 @@ define(["view/Panel-view", "model/DeviceSettings-model"], function(PanelView, De
 		render: function() {
 			this.$el.html(this.template({
 				lang: DeviceSettings.get("language"),
-				buttons: this.buttons
+				buttons: this.buttons,
+				t: i18n.t
 			}))
 			return this;
 		},

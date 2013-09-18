@@ -20,7 +20,7 @@ define(["view/Screen-view"], function(ScreenView) {
 			);
 			this.$el.find('.view').scrollTop(this.items[this.activeItemIndex].$el.position().top);
 			this.eventBus.trigger("device.panel.leftButton", "up");
-			this.eventBus.trigger("device.panel.middleButton", "ok");
+			this.eventBus.trigger("device.panel.middleButton", "ОК");
 			this.eventBus.trigger("device.panel.rightButton", "down");
 			return this;
 		},

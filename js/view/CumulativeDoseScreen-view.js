@@ -1,4 +1,4 @@
-define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measurements-collection"], function(ScreenView, DeviceSettings, MeasurementsCollection) {	
+define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measurements-collection", "i18n/i18n"], function(ScreenView, DeviceSettings, MeasurementsCollection, i18n) {	
 	var CumulativeDoseScreen; 
 	CumulativeDoseScreen = ScreenView.extend({
 		defaults: {
@@ -60,7 +60,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 			}
 
 			this.$el.html(this.template({
-				title: "Накоп.доза",
+				title: i18n.t("Накоп.доза"),
 				dose: MeasurementsCollection.formatValue(dose),
 				doseTag: doseTag,
 				unit: MeasurementsCollection.getDoseUnit(dose),

@@ -1,4 +1,4 @@
-define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measurements-collection"], function(ScreenView, DeviceSettings, MeasurementsCollection) {	
+define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measurements-collection", "i18n/i18n"], function(ScreenView, DeviceSettings, MeasurementsCollection, i18n) {	
 	var MeasurementScreen; 
 	MeasurementScreen = ScreenView.extend({
 		defaults: {
@@ -75,7 +75,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 				unit: avgValue ? MeasurementsCollection.getUnit(avgValue) : '',
 				readiness: 41 * lastReadiness / 100,
 				accuracy: 41 * this.accuracy / 100,
-				message: this.getScreenMessage(tag),
+				message: i18n.t(this.getScreenMessage(tag)),
 				tag: tag,
 				backgroundThreshold: MeasurementsCollection.formatValue(DeviceSettings.get("backgroundThreshold"))
 			}));
@@ -140,7 +140,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 					this.eventBus.trigger("device.panel.rightButton", "spot");
 			}
 
-			this.eventBus.trigger("device.panel.middleButton", "menu");
+			this.eventBus.trigger("device.panel.middleButton", "Menu");
 			return this;
 		},
 		onMiddleButton: function() {

@@ -26,7 +26,7 @@ define(["view/Screen-view"], function(ScreenView) {
 				}
 			}, this);
 			this.eventBus.trigger("device.panel.leftButton", "up");
-			this.eventBus.trigger("device.panel.middleButton", "select");
+			this.eventBus.trigger("device.panel.middleButton", "Select");
 			this.eventBus.trigger("device.panel.rightButton", "down");
 			return this;
 		},

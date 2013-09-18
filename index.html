@@ -45,13 +45,7 @@
   	  </div>
  		</script>
  		<script type="text/template" id="about-screen-template">
-    	<div class="about view">
-	      экологические приборы<br/>
-	      SOEKS<br/>
-	      Информация на сайте<br/>
-	      www.soeks.ru<br/>
-	      +7(495)223-27-27
-  	  </div>
+    	<div class="about view"><%=t("экологические приборы<br/>SOEKS<br/>Информация на сайте<br/>www.soeks.ru<br/>+7(495)223-27-27")%></div>
  		</script>
  		<script type="text/template" id="cumulative-dose-screen-template">
  			<div class="view cumulative">
@@ -140,9 +134,9 @@
 			<span><%=t(item.title)%></span>
  		</script>
  		<script type="text/template" id="bottom-panel-template">
- 			<div class="button left <%=lang%> <%=buttons.left%>"></div>
- 			<div class="button middle <%=lang%> <%=buttons.middle%>"></div>
- 			<div class="button right <%=lang%> <%=buttons.right%>"></div>
+ 			<div class="button left <%=buttons.left%>"></div>
+ 			<div class="button middle <%=buttons.middle%>"><%=t(buttons.middle)%></div>
+ 			<div class="button right <%=buttons.right%>"></div>
  		</script>
  		<script type="text/template" id="top-panel-template">
  			<div class="battery full"></div>

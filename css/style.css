@@ -261,24 +261,14 @@ div.button.right {
 }
 
 div.button.middle {
+	width: 80px;
 	left: 50%;
-	margin-left: -8px;
+	margin-left: -40px;
+	letter-spacing: -1px;
 }
 
 div.button.none {
 	display: none;
-}
-
-div.button.ok {
-	background-image: url('../img/button-ok.png');
-	background-position: 0px 1px;
-}
-
-div.button.menu {
-	background-image: url('../img/button-menu.png');
-	background-position: 0px 0px;
-	width: 38px;
-	margin-left: -19px;
 }
 
 div.button.spot {
@@ -291,13 +281,6 @@ div.button.spot-warning {
 
 div.button.spot-danger {
 	background-image: url('../img/button-spot-red.png');
-}
-
-div.button.select {
-	background-image: url('../img/button-select.png');
-	background-position: 0px 1px;
-	width: 44px;
-	margin-left: -22px;
 }
 
 div.button.up {
