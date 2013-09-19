@@ -149,11 +149,11 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 		getScreenMessage: function(tag) {
 			switch(tag) {
 				case 'warning': 
-					return "повышенный радиационный фон";
+					return "High radiation background";
 				case 'danger':
-					return "опасный радиационный фон";
+					return "Dangerous radiation background";
 				default:
-					return "радиационный фон в норме";
+					return "Normal radiation background";
 			}
 		}
 	});

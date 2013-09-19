@@ -60,7 +60,7 @@ define(["view/Screen-view", "model/DeviceSettings-model", "collection/Measuremen
 			}
 
 			this.$el.html(this.template({
-				title: i18n.t("Накоп.доза"),
+				title: i18n.t("Accum.dose"),
 				dose: MeasurementsCollection.formatValue(dose),
 				doseTag: doseTag,
 				unit: MeasurementsCollection.getDoseUnit(dose),

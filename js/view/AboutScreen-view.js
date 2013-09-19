@@ -1,4 +1,4 @@
-define(["view/Screen-view"], function(ScreenView) {	
+define(["view/Screen-view", "i18n/i18n"], function(ScreenView, i18n) {	
 	var AboutScreen; 
 	AboutScreen = ScreenView.extend({
 		template: _.template($('#about-screen-template').html()),
@@ -6,7 +6,7 @@ define(["view/Screen-view"], function(ScreenView) {
 			this.on("button.middle", this.onMiddleButton);
 		},
 		render: function() {
-			this.$el.html(this.template())
+			this.$el.html(this.template({t: i18n.t}))
 			this.eventBus.trigger("device.panel.leftButton", "none");
 			this.eventBus.trigger("device.panel.rightButton", "none");
 			return this;
